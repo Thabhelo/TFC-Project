@@ -10,22 +10,7 @@ TheFallsChurch.net
 
 TheFallsChurch.net is the official digital presence of The Falls Church. It aims to provide information about the church's mission, ministries, sermons, events, and ways to connect and give. The website will also serve as a platform for outreach and community building.
 
-### Goals
-
--   Increase community engagement
--   Enable online access to sermons and events
--   Provide easy navigation for newcomers
--   Support online donations and registrations
-
-2\. Target Audience
--------------------
-
--   Church members and regular attendees
--   First-time visitors
--   Community partners and volunteers
--   Online worshippers
-
-3\. Core Features
+2\. Core Features
 -----------------
 
 | Feature | Description |
@@ -46,7 +31,7 @@ TheFallsChurch.net is the official digital presence of The Falls Church. It aims
 | **Blog/News** | Regular updates, devotionals, church news |
 | **Newsletter Signup** | Embedded email signup for updates and event reminders |
 
-4\. Information Architecture
+3\. Information Architecture
 ----------------------------
 
 ```
@@ -70,17 +55,7 @@ Home
 └── Member Login (optional)
 
 ```
-
-5\. Design & UX Principles
---------------------------
-
--   Modern and clean with spiritual warmth
--   Responsive design for mobile, tablet, and desktop
--   Accessibility-compliant (WCAG 2.1)
--   Simple navigation with sticky header and mega menu
--   SEO-optimized structure and metadata
-
-6\. Technology Stack
+4\. Technology Stack
 --------------------
 
 ### Core Technologies
@@ -103,7 +78,7 @@ Home
 | **Authentication** | Firebase Auth or Auth0 (for Member Portal) |
 | **Analytics** | Google Analytics / Plausible.io |
 
-7\. Security Considerations
+5\. Security Considerations
 ---------------------------
 
 -   HTTPS with SSL
@@ -112,14 +87,14 @@ Home
 -   Input validation on all forms
 -   GDPR and privacy compliance for newsletter and contact forms
 
-8\. Performance and Scalability
+6\. Performance and Scalability
 -------------------------------
 
 -   Optimized images and lazy loading
 -   CDN for static assets (Cloudflare, AWS CloudFront)
 -   Modular design to allow future growth (e.g., livestreaming, mobile app)
 
-9\. Deployment & Maintenance
+7\. Deployment & Maintenance
 ----------------------------
 
 -   CI/CD with GitHub Actions or Netlify/Vercel pipelines
@@ -127,17 +102,7 @@ Home
 -   Monthly backups and plugin updates
 -   Admin dashboard training for church staff
 
-10\. Timeline (Estimated)
--------------------------
-
-| Phase | Duration |
-| --- | --- |
-| **Discovery & Planning** | 1 week |
-| **Development** | 1 week |
-| **Testing & Launch** | 1 week |
-| **Total** | **3 Weeks** |
-
-11\. Appendices
+8\. Appendices
 ---------------
 
 ### Required Assets
