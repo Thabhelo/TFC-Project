@@ -335,6 +335,21 @@ export default function ContactPage() {
                   </form>
                 )}
               </motion.div>
+              
+              <motion.div className="mt-8 text-center" variants={fadeInUp}>
+                <motion.div 
+                  className="bg-white p-6 rounded-lg shadow-md border border-gray-200 max-w-lg mx-auto"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <MapPin className="text-gray-600 mx-auto mb-3" size={32} />
+                  <h3 className="font-display text-xl font-semibold text-gray-900 mb-2">Victoria Falls Primary School</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Our church meets in the school hall every Sunday. Look for our welcoming team at the entrance 
+                    who will be happy to guide you to our meeting space.
+                  </p>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </motion.section>
@@ -351,23 +366,29 @@ export default function ContactPage() {
             <motion.div className="text-center mb-16" variants={fadeInUp}>
               <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Find Us</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We're located in the beautiful city of Victoria Falls, Zimbabwe. Come visit us this Sunday!
+                We meet at Victoria Falls Primary School Hall in the beautiful city of Victoria Falls, Zimbabwe. 
+                Use the interactive map below to get directions. Come visit us this Sunday!
               </p>
             </motion.div>
 
             <motion.div 
-              className="bg-gray-300 rounded-lg overflow-hidden"
+              className="bg-gray-300 rounded-lg overflow-hidden shadow-lg"
               variants={fadeInUp}
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              {/* Placeholder for map - in a real app, you'd integrate with Google Maps or similar */}
-              <div className="aspect-video bg-gray-400 flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <MapPin size={48} className="mx-auto mb-4" />
-                  <p className="text-lg font-medium">Interactive Map</p>
-                  <p className="text-sm">Victoria Falls Primary School Hall, Victoria Falls, Zimbabwe</p>
-                </div>
+              {/* Google Maps Embed for Victoria Falls Primary School */}
+              <div className="aspect-video">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4398.971455553525!2d25.81604957517759!3d-17.93371678304964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x194fe53900000001%3A0x312ee7b4330bd6ad!2sVictoria%20Falls%20Primary%20School!5e1!3m2!1sen!2sus!4v1750908301692!5m2!1sen!2sus"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Victoria Falls Primary School Location"
+                />
               </div>
             </motion.div>
           </div>
