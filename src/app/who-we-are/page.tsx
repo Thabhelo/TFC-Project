@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Users, Heart, Star, Music, Baby, Zap, Palette, ArrowRight } from 'lucide-react'
+import { Users, Heart, Star, Music, Baby, Zap, Palette, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
 const fadeInUp = {
@@ -19,51 +19,83 @@ const staggerContainer = {
   }
 }
 
+// Image Carousel Component
+const ImageCarousel = ({ images, title }: { images: string[], title: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 4000) // Change image every 4 seconds
+
+    return () => clearInterval(timer)
+  }, [images.length])
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
+
+  return (
+    <motion.div 
+      className="relative w-full h-80 bg-gray-200 rounded-lg overflow-hidden"
+      variants={fadeInUp}
+    >
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div 
+          className="text-center p-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="w-20 h-20 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span className="text-white text-xs font-medium">{currentIndex + 1}/{images.length}</span>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">{title}</h3>
+          <p className="text-sm text-gray-500">Image placeholder - Carousel with {images.length} images</p>
+        </motion.div>
+      </div>
+      
+      {/* Navigation buttons */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
+      >
+        <ChevronLeft size={20} className="text-gray-600" />
+      </button>
+      
+      <button
+        onClick={goToNext}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
+      >
+        <ChevronRight size={20} className="text-gray-600" />
+      </button>
+      
+      {/* Dots indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-colors ${
+              index === currentIndex ? 'bg-white' : 'bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
 export default function WhoWeArePage() {
-  const ministries = [
-    { 
-      name: 'Youth Ministry', 
-      description: 'Engaging young hearts with Christ through fun activities, deep study, and authentic community.', 
-      icon: Star,
-      age: 'Ages 13-18',
-      meeting: 'Tuesday 7:00 PM'
-    },
-    { 
-      name: 'Women\'s Ministry', 
-      description: 'Sisters in faith growing together through Bible study, prayer, and meaningful fellowship.', 
-      icon: Heart,
-      age: 'All Ages',
-      meeting: 'Thursday 10:00 AM'
-    },
-    { 
-      name: 'Men\'s Ministry', 
-      description: 'Brothers building strong foundations in faith, family, and leadership through God\'s Word.', 
-      icon: Zap,
-      age: 'All Ages',
-      meeting: 'Saturday 7:00 AM'
-    },
-    { 
-      name: 'Children\'s Ministry', 
-      description: 'Nurturing young faith through age-appropriate teaching, crafts, and Bible adventures.', 
-      icon: Baby,
-      age: 'Ages 3-12',
-      meeting: 'Sunday 10:00 AM'
-    },
-    { 
-      name: 'Worship Ministry', 
-      description: 'Leading hearts in worship through music, song, and creating an atmosphere of praise.', 
-      icon: Music,
-      age: 'All Ages',
-      meeting: 'Sunday 9:00 AM'
-    },
-    { 
-      name: 'Creative Ministry', 
-      description: 'Using artistic gifts to serve God and our community through visual arts and media.', 
-      icon: Palette,
-      age: 'All Ages',
-      meeting: 'Monthly'
-    }
-  ]
+  // Placeholder images for carousels
+  const moreOfWhoWeAreImages = ['img1.jpg', 'img2.jpg', 'img3.jpg']
+  const prayerLaunchImages = ['prayer1.jpg', 'prayer2.jpg', 'prayer3.jpg']
+  const familyBraaiImages = ['braai1.jpg', 'braai2.jpg', 'braai3.jpg']
+  const joyTogetherImages = ['joy1.jpg', 'joy2.jpg', 'joy3.jpg']
 
   return (
     <div className="min-h-screen bg-white">
@@ -122,18 +154,11 @@ export default function WhoWeArePage() {
                 animate={{ width: 96 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               />
-              <motion.p 
-                className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-                variants={fadeInUp}
-              >
-                We believe that every church is different and that each church is also made up of different people. 
-                Yet in this, we believe that God gives us a united mission and important values through which we desire to express ourselves.
-              </motion.p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Community Values */}
+        {/* Our Story Section */}
         <motion.section 
           className="py-20 bg-white"
           initial="initial"
@@ -141,66 +166,36 @@ export default function WhoWeArePage() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Our Community Values</h2>
-              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                These core values shape who we are as a community and guide how we live, worship, and serve together.
-              </p>
-            </motion.div>
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div className="space-y-8" variants={staggerContainer}>
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  In the first half of 2018, Wessie and Somien van der Westhuizen were visiting friends in Victoria Falls. Both were leading churches in their respective cities of Bulawayo and Lusaka. During their time together and through conversations, the possibility of planting a church in the city came up.
+                </p>
+              </motion.div>
 
-            <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer}>
-              {[
-                {
-                  title: "God Centered",
-                  description: "We believe that a God-centred mindset begins with a radical starting point, namely, God. God is the basic given reality in the universe.",
-                  color: "from-blue-400 to-blue-600"
-                },
-                {
-                  title: "Gospel Shaped",
-                  description: "The Gospel is Jesus, and it is this aspect we believe should define who we are and how we live our lives. We are not a community that is firstly defined by a natural world view.",
-                  color: "from-green-400 to-green-600"
-                },
-                {
-                  title: "Family Focused",
-                  description: "We value families, both natural families and the church as a spiritual family and consider these to be the building blocks of society.",
-                  color: "from-purple-400 to-purple-600"
-                },
-                {
-                  title: "Mission Minded",
-                  description: "Not only do we value people in the church, but we want to value people 'outside' of the church family. We are eager to let our lives make a difference.",
-                  color: "from-yellow-400 to-orange-500"
-                },
-                {
-                  title: "Maturity Motivated",
-                  description: "We believe in the joy of seeing people grow in their relationships with God and therefore live to help individuals move towards maturity in Christ.",
-                  color: "from-pink-400 to-red-500"
-                }
-              ].map((value, index) => (
-                <motion.div 
-                  key={index}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden"
-                  variants={fadeInUp}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.div 
-                    className={`h-2 bg-gradient-to-r ${value.color}`}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ delay: index * 0.1 + 0.3, duration: 0.8 }}
-                  />
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  After returning to Bulawayo and speaking with friends in South Africa and elders in the city, their advice was to go and investigate and see what God will lead us into. Through a number of reconnaissance trips, and meeting up with people who were believers that the idea of a church plant was shared with them. From these conversations, it became clear that there was a need for a church in the city.
+                </p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Fast forward a few months later, in January 2019, an information evening was organised to introduce the idea to those were interested. From there, the idea was to travel up once a month and have a Bible Study and mealtime with them. Present at this information evening was Jamie Henson, who offered his house for these moments, and his cottage as a place to stay. Later that year, the church had their first public meeting together in his garden on a Sunday afternoon.
+                </p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  In 2020, the plan was to officially begin Sunday meetings but the onset of the COVID-19 delayed this, fortunately these were able to take place in October 2020. In May 2023, the first elders were ordained, and the first team of deacons were released not long afterwards in March 2025.
+                </p>
+              </motion.div>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Ministries Section */}
+        {/* More Of Who We Are Section */}
         <motion.section 
           className="py-20 bg-gray-50"
           initial="initial"
@@ -209,55 +204,25 @@ export default function WhoWeArePage() {
           variants={staggerContainer}
         >
           <div className="max-w-6xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Our Ministries</h2>
-              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Find your place in our community through our various ministries designed to help you grow, connect, and serve.
-              </p>
+            <motion.div className="text-center mb-12" variants={fadeInUp}>
+              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">More Of Who We Are</h2>
             </motion.div>
 
-            <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer}>
-              {ministries.map((ministry, index) => (
-                <motion.div 
-                  key={index}
-                  className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
-                  variants={fadeInUp}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.div 
-                    className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4"
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <ministry.icon className="text-white" size={24} />
-                  </motion.div>
-                  <h3 className="font-display text-xl font-semibold text-gray-900 mb-3 text-center">{ministry.name}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{ministry.description}</p>
-                  <div className="space-y-2 text-xs text-gray-500">
-                    <div className="flex justify-between">
-                      <span className="font-medium">Age Group:</span>
-                      <span>{ministry.age}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="font-medium">Meeting Time:</span>
-                      <span>{ministry.meeting}</span>
-                    </div>
-                  </div>
-                  <motion.button 
-                    className="w-full mt-4 bg-gray-900 text-white py-2 text-sm font-medium hover:bg-gray-700 transition-colors duration-300"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Learn More
-                  </motion.button>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInUp}>
+                <ImageCarousel images={moreOfWhoWeAreImages} title="Our Community" />
+              </motion.div>
+              
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Our church is not part of denomination or church family; but we partner with leaders from a specific apostolic movement and other relating churches from various countries in the world, pursuing the Gospel mission God has given the church. We believe in this for the purpose of accountability, growth and to fulfill all that God has for us.
+                </p>
+              </motion.div>
+            </div>
           </div>
         </motion.section>
 
-        {/* What to Expect */}
+        {/* Prayer Launch 2020 Section */}
         <motion.section 
           className="py-20 bg-white"
           initial="initial"
@@ -266,98 +231,50 @@ export default function WhoWeArePage() {
           variants={staggerContainer}
         >
           <div className="max-w-6xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">What to Expect</h2>
-              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Visiting for the first time? Here's what you can expect when you join us for worship.
-              </p>
+            <motion.div className="text-center mb-12" variants={fadeInUp}>
+              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Prayer Launch 2020</h2>
             </motion.div>
 
-            <motion.div className="grid md:grid-cols-2 gap-12 items-center" variants={staggerContainer}>
-              <motion.div className="space-y-6" variants={fadeInUp}>
-                <div className="flex items-start space-x-4">
-                  <motion.div 
-                    className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className="text-white text-sm font-bold">1</span>
-                  </motion.div>
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-gray-900 mb-2">Warm Welcome</h3>
-                    <p className="text-gray-600">Our greeting team will welcome you with genuine smiles and help you find everything you need.</p>
-                  </div>
-                </div>
+            <motion.div className="max-w-4xl mx-auto" variants={fadeInUp}>
+              <ImageCarousel images={prayerLaunchImages} title="Prayer Launch Event" />
+            </motion.div>
+          </div>
+        </motion.section>
 
-                <div className="flex items-start space-x-4">
-                  <motion.div 
-                    className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className="text-white text-sm font-bold">2</span>
-                  </motion.div>
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-gray-900 mb-2">Uplifting Worship</h3>
-                    <p className="text-gray-600">Experience heartfelt worship through contemporary and traditional music that honors God.</p>
-                  </div>
-                </div>
+        {/* Family Braai Day 2024 Section */}
+        <motion.section 
+          className="py-20 bg-gray-50"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <motion.div className="text-center mb-12" variants={fadeInUp}>
+              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Family Braai Day 2024</h2>
+            </motion.div>
 
-                <div className="flex items-start space-x-4">
-                  <motion.div 
-                    className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className="text-white text-sm font-bold">3</span>
-                  </motion.div>
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-gray-900 mb-2">Practical Teaching</h3>
-                    <p className="text-gray-600">Hear God's Word taught in a relevant, understandable way that applies to everyday life.</p>
-                  </div>
-                </div>
+            <motion.div className="max-w-4xl mx-auto" variants={fadeInUp}>
+              <ImageCarousel images={familyBraaiImages} title="Family Braai Celebration" />
+            </motion.div>
+          </div>
+        </motion.section>
 
-                <div className="flex items-start space-x-4">
-                  <motion.div 
-                    className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className="text-white text-sm font-bold">4</span>
-                  </motion.div>
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-gray-900 mb-2">Genuine Community</h3>
-                    <p className="text-gray-600">Connect with others and experience the love and support of our church family.</p>
-                  </div>
-                </div>
-              </motion.div>
+        {/* The Joy Of Being Together Section */}
+        <motion.section 
+          className="py-20 bg-white"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <div className="max-w-6xl mx-auto px-6">
+            <motion.div className="text-center mb-12" variants={fadeInUp}>
+              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">The Joy Of Being Together</h2>
+            </motion.div>
 
-              <motion.div 
-                className="bg-gray-50 p-8 rounded-lg"
-                variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6 text-center">Sunday Service Times</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Morning Worship</span>
-                    <span className="text-gray-600">10:00 AM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Children's Church</span>
-                    <span className="text-gray-600">10:15 AM</span>
-                  </div>
-                  <div className="flex justify-between items-center py-3">
-                    <span className="font-medium text-gray-900">Fellowship Time</span>
-                    <span className="text-gray-600">11:15 AM</span>
-                  </div>
-                </div>
-                <motion.div className="mt-6">
-                  <Link 
-                    href="/contact" 
-                    className="w-full bg-gray-900 text-white py-3 font-semibold hover:bg-gray-700 transition-colors duration-300 text-center block"
-                  >
-                    Plan Your Visit
-                  </Link>
-                </motion.div>
-              </motion.div>
+            <motion.div className="max-w-4xl mx-auto" variants={fadeInUp}>
+              <ImageCarousel images={joyTogetherImages} title="Community Fellowship" />
             </motion.div>
           </div>
         </motion.section>
@@ -397,6 +314,19 @@ export default function WhoWeArePage() {
             </motion.div>
           </div>
         </motion.section>
+
+        {/* Footer */}
+        <motion.footer 
+          className="py-8 bg-gray-100 border-t"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+        >
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <p className="text-gray-600">© The Falls Church</p>
+          </div>
+        </motion.footer>
       </main>
     </div>
   )
