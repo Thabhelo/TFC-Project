@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Heart, Book, Cross, Sun, Users, ArrowRight } from 'lucide-react'
+import { Heart, Book, Cross, Sun, Users, ArrowRight, Search, Lightbulb } from 'lucide-react'
 import Link from 'next/link'
 
 const fadeInUp = {
@@ -77,17 +77,23 @@ export default function KnowGodPage() {
                 animate={{ width: 96 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               />
-              <motion.p 
-                className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              <motion.blockquote 
+                className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium italic mb-4"
                 variants={fadeInUp}
               >
-                Begin your journey of faith and discover the transformative power of knowing God personally
-              </motion.p>
+                "BUT IF ANYONE LOVES GOD, HE IS KNOWN BY GOD."
+              </motion.blockquote>
+              <motion.cite 
+                className="text-lg text-gray-500 font-semibold tracking-wide"
+                variants={fadeInUp}
+              >
+                1 CORINTHIANS 8:3
+              </motion.cite>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* What Does It Mean Section */}
+        {/* Opening Quote Section */}
         <motion.section 
           className="py-20 bg-white"
           initial="initial"
@@ -95,56 +101,31 @@ export default function KnowGodPage() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">What Does It Mean to Know God?</h2>
-              <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Knowing God is not just intellectual knowledge, but a personal, transformative relationship that changes everything about how we live, love, and find purpose.
-              </p>
-            </motion.div>
-
-            <motion.div className="grid md:grid-cols-2 gap-12 items-center mb-20" variants={staggerContainer}>
-              <motion.div variants={fadeInUp}>
-                <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">A Personal Relationship</h3>
-                <div className="space-y-4 text-gray-600 leading-relaxed">
-                  <p>
-                    God desires to know you personally and intimately. This isn't about following rules or traditions, 
-                    but about entering into a loving relationship with your Creator.
-                  </p>
-                  <p>
-                    Through Jesus Christ, we can approach God directly, knowing that He loves us unconditionally 
-                    and has a purpose for our lives.
-                  </p>
-                  <p>
-                    This relationship transforms our understanding of ourselves, our purpose, and our eternal destiny.
-                  </p>
-                </div>
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div 
+              className="bg-gray-50 p-8 md:p-12 rounded-lg"
+              variants={fadeInUp}
+            >
+              <motion.div className="text-center mb-8" variants={fadeInUp}>
+                <Heart size={48} className="text-gray-400 mx-auto mb-4" />
               </motion.div>
-              
-              <motion.div 
-                className="bg-gray-50 p-8 rounded-lg"
+              <motion.blockquote 
+                className="text-lg md:text-xl text-gray-700 leading-relaxed italic text-center mb-6"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.div
-                  className="text-center"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-                >
-                  <Heart size={64} className="text-gray-400 mx-auto mb-4" />
-                  <blockquote className="text-lg text-gray-700 italic">
-                    "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
-                  </blockquote>
-                  <cite className="text-gray-500 text-sm mt-2 block">- John 3:16</cite>
-                </motion.div>
-              </motion.div>
+                "And it is only the knowledge of this God whose deepest nature is love that is the source of ancient prophecies with their radiant hopes. God has made himself known by personally approaching human beings and involving Himself in their lives."
+              </motion.blockquote>
+              <motion.cite 
+                className="text-gray-500 text-center block font-medium"
+                variants={fadeInUp}
+              >
+                - Dallas Willard
+              </motion.cite>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Steps to Know God */}
+        {/* Main Content Section */}
         <motion.section 
           className="py-20 bg-gray-50"
           initial="initial"
@@ -152,72 +133,80 @@ export default function KnowGodPage() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Your Journey to Know God</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Here are some simple steps to begin or deepen your relationship with God
-              </p>
-            </motion.div>
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div className="space-y-12" variants={staggerContainer}>
+              
+              {/* First Paragraph */}
+              <motion.div variants={fadeInUp}>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  We see from this statement that knowing God is not an optional part of the Christian life! Our knowledge of God begins with the opening of our heart and mind to Him.
+                </p>
+              </motion.div>
 
-            <motion.div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" variants={staggerContainer}>
-              {[
-                {
-                  icon: Book,
-                  title: "Read His Word",
-                  description: "Start with the Gospel of John to learn about Jesus and God's love for you.",
-                  step: "1"
-                },
-                {
-                  icon: Heart,
-                  title: "Talk to Him",
-                  description: "Prayer is simply talking to God. Share your thoughts, concerns, and gratitude.",
-                  step: "2"
-                },
-                {
-                  icon: Users,
-                  title: "Join Community",
-                  description: "Connect with others on the same journey through our church family.",
-                  step: "3"
-                },
-                {
-                  icon: Sun,
-                  title: "Live It Out",
-                  description: "Let your relationship with God transform how you love and serve others.",
-                  step: "4"
-                }
-              ].map((step, index) => (
-                <motion.div 
-                  key={index}
-                  className="bg-white p-6 rounded-lg shadow-lg text-center relative overflow-hidden"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <motion.div 
-                    className="absolute top-4 right-4 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-sm font-bold text-gray-600"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: index * 0.1 + 0.3 }}
-                  >
-                    {step.step}
-                  </motion.div>
-                  <motion.div
-                    className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-4"
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <step.icon className="text-white" size={24} />
-                  </motion.div>
-                  <h3 className="font-display text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
-                </motion.div>
-              ))}
+              {/* Heart Section */}
+              <motion.div 
+                className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-blue-500"
+                variants={fadeInUp}
+              >
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <Heart className="text-blue-500 mt-1" size={32} />
+                  </div>
+                  <div>
+                    <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                      The Bible makes it clear that we live from the heart.
+                    </p>
+                    <blockquote className="text-gray-600 italic border-l-2 border-gray-300 pl-4">
+                      "Keep your heart with all vigilance, for from it flow the springs of life." 
+                      <cite className="block text-sm text-gray-500 mt-1">- Proverbs 4:23</cite>
+                    </blockquote>
+                    <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                      It is in this metaphorical centre of our lives that we are called to be made new when we come to God.
+                    </p>
+                    <blockquote className="text-gray-600 italic border-l-2 border-gray-300 pl-4 mt-4">
+                      "...if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come." 
+                      <cite className="block text-sm text-gray-500 mt-1">- 2 Corinthians 5:17</cite>
+                    </blockquote>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Mind Section */}
+              <motion.div 
+                className="bg-white p-8 rounded-lg shadow-sm border-l-4 border-red-500"
+                variants={fadeInUp}
+              >
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <Lightbulb className="text-red-500 mt-1" size={32} />
+                  </div>
+                  <div>
+                    <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                      But it is also true that we first turned away from God in our thoughts.
+                    </p>
+                    <blockquote className="text-gray-600 italic border-l-2 border-gray-300 pl-4">
+                      "All we like sheep have gone astray, we have turned—everyone—to his own way..." 
+                      <cite className="block text-sm text-gray-500 mt-1">- Isaiah 53:6</cite>
+                    </blockquote>
+                    <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                      And so it is in our thoughts that the first steps toward the renovation of our heart occurs.
+                    </p>
+                    <blockquote className="text-gray-600 italic border-l-2 border-gray-300 pl-4 mt-4">
+                      "...be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect." 
+                      <cite className="block text-sm text-gray-500 mt-1">- Romans 12:2</cite>
+                    </blockquote>
+                    <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                      It is in our mind that the Holy Spirit begins to convince us of our sin and lost condition. It will also be in our mind that we respond to God's grace. It is in our mind that we begin to put together our first thoughts of God and formulate our own personal knowledge of Him - a knowledge that needs to be consistent with the God that Jesus revealed in Scripture!
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Questions Section */}
+        {/* Is That What You Long For Section */}
         <motion.section 
           className="py-20 bg-white"
           initial="initial"
@@ -225,41 +214,71 @@ export default function KnowGodPage() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Common Questions</h2>
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div className="text-center mb-12" variants={fadeInUp}>
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+                IS THAT WHAT YOU LONG FOR?
+              </h2>
             </motion.div>
 
             <motion.div className="space-y-8" variants={staggerContainer}>
-              {[
-                {
-                  question: "How do I start a relationship with God?",
-                  answer: "It begins with recognizing that God loves you and wants to be in relationship with you. Simply talk to Him in prayer, acknowledging your need for Him and asking Jesus to come into your life."
-                },
-                {
-                  question: "What if I don't understand the Bible?",
-                  answer: "That's completely normal! Start with simple, modern translations and don't be afraid to ask questions. Our church family is here to help you learn and grow."
-                },
-                {
-                  question: "Do I need to be perfect to know God?",
-                  answer: "Absolutely not! God loves you exactly as you are. He doesn't wait for you to clean up your life first - He meets you where you are and helps you grow."
-                },
-                {
-                  question: "How can I hear from God?",
-                  answer: "God speaks to us through His Word, through prayer, through other believers, and through His Holy Spirit. As you grow in relationship with Him, you'll learn to recognize His voice."
-                }
-              ].map((faq, index) => (
+              <motion.p 
+                className="text-lg text-gray-700 leading-relaxed"
+                variants={fadeInUp}
+              >
+                If the desire of your heart is to know God more intimately, that is a sign that the grace of God is drawing you in. Your response is setting yourself to seek after, and pursue Him. Those who seek, will find Him.
+              </motion.p>
+
+              {/* Scripture Cards */}
+              <motion.div className="grid md:grid-cols-3 gap-6" variants={staggerContainer}>
                 <motion.div 
-                  key={index}
-                  className="bg-gray-50 p-6 rounded-lg"
+                  className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg text-center"
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.01 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <h3 className="font-display text-xl font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <Search className="text-blue-600 mx-auto mb-4" size={40} />
+                  <blockquote className="text-gray-700 italic mb-3 leading-relaxed">
+                    "...seek first the kingdom of God and his righteousness, and all these things will be added to you."
+                  </blockquote>
+                  <cite className="text-sm text-gray-500">- Matthew 6:33</cite>
                 </motion.div>
-              ))}
+
+                <motion.div 
+                  className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg text-center"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Heart className="text-green-600 mx-auto mb-4" size={40} />
+                  <blockquote className="text-gray-700 italic mb-3 leading-relaxed">
+                    "You will seek me and find me, when you seek me with all your heart."
+                  </blockquote>
+                  <cite className="text-sm text-gray-500">- Jeremiah 29:13</cite>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg text-center"
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Sun className="text-purple-600 mx-auto mb-4" size={40} />
+                  <blockquote className="text-gray-700 italic mb-3 leading-relaxed">
+                    "Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you."
+                  </blockquote>
+                  <cite className="text-sm text-gray-500">- Matthew 7:7</cite>
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                className="bg-gray-900 text-white p-8 rounded-lg text-center"
+                variants={fadeInUp}
+              >
+                <p className="text-lg leading-relaxed">
+                  The impulse to pursue God originates with Him, but the outworking of that impulse is our desire to follow Him.
+                </p>
+              </motion.div>
             </motion.div>
           </div>
         </motion.section>
@@ -274,7 +293,7 @@ export default function KnowGodPage() {
         >
           <div className="max-w-4xl mx-auto text-center px-6">
             <motion.h2 className="font-display text-4xl md:text-5xl font-bold mb-6" variants={fadeInUp}>
-              Ready to Take the Next Step?
+              Ready to Begin Your Journey?
             </motion.h2>
             <motion.p className="text-xl mb-8 text-gray-300 leading-relaxed" variants={fadeInUp}>
               We'd love to help you on your journey to know God. Connect with us and discover the life-changing power of faith.
