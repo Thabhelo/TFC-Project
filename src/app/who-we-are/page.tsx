@@ -126,7 +126,8 @@ export default function WhoWeArePage() {
                 className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
                 variants={fadeInUp}
               >
-                A diverse community united by faith, committed to growing together and serving others
+                We believe that every church is different and that each church is also made up of different people. 
+                Yet in this, we believe that God gives us a united mission and important values through which we desire to express ourselves.
               </motion.p>
             </motion.div>
           </div>
@@ -151,34 +152,29 @@ export default function WhoWeArePage() {
             <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer}>
               {[
                 {
-                  title: "Authentic Community",
-                  description: "We believe in being real with each other, sharing our struggles and victories as we grow in faith together.",
+                  title: "God Centered",
+                  description: "We believe that a God-centred mindset begins with a radical starting point, namely, God. God is the basic given reality in the universe.",
                   color: "from-blue-400 to-blue-600"
                 },
                 {
-                  title: "Inclusive Love",
-                  description: "Everyone is welcome here, regardless of background, race, or where they are in their spiritual journey.",
+                  title: "Gospel Shaped",
+                  description: "The Gospel is Jesus, and it is this aspect we believe should define who we are and how we live our lives. We are not a community that is firstly defined by a natural world view.",
                   color: "from-green-400 to-green-600"
                 },
                 {
-                  title: "Servant Hearts",
-                  description: "We follow Jesus' example of humble service, both within our church family and in our broader community.",
+                  title: "Family Focused",
+                  description: "We value families, both natural families and the church as a spiritual family and consider these to be the building blocks of society.",
                   color: "from-purple-400 to-purple-600"
                 },
                 {
-                  title: "Biblical Foundation",
-                  description: "God's Word is our ultimate authority and guide for all aspects of life, faith, and community.",
+                  title: "Mission Minded",
+                  description: "Not only do we value people in the church, but we want to value people 'outside' of the church family. We are eager to let our lives make a difference.",
                   color: "from-yellow-400 to-orange-500"
                 },
                 {
-                  title: "Lifelong Growth",
-                  description: "We're committed to continuously growing in our relationship with God and in our understanding of His will.",
+                  title: "Maturity Motivated",
+                  description: "We believe in the joy of seeing people grow in their relationships with God and therefore live to help individuals move towards maturity in Christ.",
                   color: "from-pink-400 to-red-500"
-                },
-                {
-                  title: "Generous Living",
-                  description: "We believe in living generously with our time, talents, and resources to bless others and advance God's kingdom.",
-                  color: "from-indigo-400 to-purple-500"
                 }
               ].map((value, index) => (
                 <motion.div 
