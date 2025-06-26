@@ -6,12 +6,16 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
 })
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
+  preload: true,
+  fallback: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
 })
 
 export const metadata: Metadata = {
@@ -45,6 +49,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'your-google-verification-code',
+  },
 }
 
 export default function RootLayout({
@@ -54,6 +61,64 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="/_next/static/media/inter-cyrillic-ext-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/_next/static/media/playfair-display-cyrillic-ext-wght-normal.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Preconnect for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Viewport meta for better mobile performance */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* Optimized icons */}
+        <link rel="icon" href="/tfc-logo-64.webp" type="image/webp" />
+        <link rel="apple-touch-icon" href="/tfc-logo-128.webp" />
+        
+        {/* Prefetch critical pages */}
+        <link rel="prefetch" href="/about" />
+        <link rel="prefetch" href="/contact" />
+        
+        {/* Critical resource hints */}
+        <link rel="preload" href="/tfc-logo.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
+        
+        {/* Service worker registration for caching */}
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                if ('serviceWorker' in navigator) {
+                  window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js');
+                  });
+                }
+              `,
+            }}
+          />
+        )}
+      </head>
       <body className={`${inter.className} antialiased`}>
         {children}
       </body>
