@@ -103,15 +103,18 @@ export default function AboutPage() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <motion.div className="space-y-6" variants={staggerContainer}>
                   <motion.p className="text-lg text-gray-600 leading-relaxed" variants={fadeInUp}>
-                    The Falls Church was founded on the radical starting point that God is the basic given reality in the universe. 
-                    He was there before we or anything else was in existence - He is simply the most absolute reality.
+                    In the first half of 2018, Wessie and Somien van der Westhuizen were visiting friends in Victoria Falls. 
+                    Both were leading churches in their respective cities of Bulawayo and Lusaka. During their time together 
+                    and through conversations, the possibility of planting a church in the city came up.
                   </motion.p>
                   <motion.p className="text-lg text-gray-600 leading-relaxed" variants={fadeInUp}>
-                    From this foundation, we live with the understanding that God has basic rights to every individual's life 
-                    as the Creator of all things. We are not a community defined by a natural worldview, but by a supernatural one.
+                    After returning to Bulawayo and speaking with friends in South Africa and elders in the city, their advice 
+                    was to go and investigate and see what God would lead them into. Through a number of reconnaissance trips 
+                    and meeting with believers, it became clear that there was a need for a church in the city.
                   </motion.p>
                   <motion.p className="text-lg text-gray-600 leading-relaxed" variants={fadeInUp}>
-                    The Gospel is Jesus, and it is this truth that defines who we are and how we live our lives in community.
+                    In January 2019, an information evening was organized to introduce the idea to those who were interested. 
+                    The church had their first public meeting in October 2020, and in May 2023, the first elders were ordained.
                   </motion.p>
                 </motion.div>
                 <motion.div 
@@ -131,6 +134,7 @@ export default function AboutPage() {
                     "We believe in the joy of seeing people grow in their relationships with God and therefore live to help 
                     individuals move towards maturity in Christ."
                   </blockquote>
+                  <p className="text-sm text-gray-500 mt-4">— Church Vision Statement</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -152,9 +156,9 @@ export default function AboutPage() {
               </motion.h2>
               <motion.div className="grid md:grid-cols-3 gap-8" variants={staggerContainer}>
                 {[
-                  { name: 'Pastor John Smith', role: 'Senior Pastor', description: 'Leading our congregation with wisdom and compassion for over 15 years.' },
-                  { name: 'Pastor Sarah Johnson', role: 'Associate Pastor', description: 'Passionate about discipleship and community outreach ministries.' },
-                  { name: 'Michael Davis', role: 'Youth Pastor', description: 'Dedicated to engaging young hearts and minds with the love of Christ.' }
+                  { name: 'Wessie van der Westhuizen', role: 'Lead Pastor', description: 'Church planter and visionary leader who helped establish The Falls Church in Victoria Falls.' },
+                  { name: 'Jamie Henson', role: 'Elder', description: 'Faithful servant who opened his home for the early church meetings and continues to serve.' },
+                  { name: 'Leadership Team', role: 'Elders & Deacons', description: 'Ordained in 2023 and 2025, serving with dedication to shepherd and serve the congregation.' }
                 ].map((leader, index) => (
                   <motion.div 
                     key={index} 

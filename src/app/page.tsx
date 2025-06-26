@@ -218,7 +218,7 @@ const FallsChurchWebsite = () => {
                   transition={{ duration: 0.8, delay: 0.3 }}
                 />
                 <motion.p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" variants={fadeInUp}>
-                  Built on the unchanging truth that God is the center of everything
+                  A community of believers in a beautiful location, aiming to grow their faith in God and grow their faithfulness to God
                 </motion.p>
               </motion.div>
               
@@ -238,7 +238,7 @@ const FallsChurchWebsite = () => {
                   </motion.div>
                   <h3 className="font-display text-2xl font-semibold text-gray-900 mb-4">God-Centered</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    We start with the assumption that God is the center of everything, giving Him basic rights to every individual's life.
+                    We believe that a God-centered mindset begins with a radical starting point, namely, God. God is the basic given reality in the universe.
                   </p>
                 </motion.div>
                 
@@ -257,7 +257,7 @@ const FallsChurchWebsite = () => {
                   </motion.div>
                   <h3 className="font-display text-2xl font-semibold text-gray-900 mb-4">Gospel Community</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    The Gospel is Jesus, and it defines who we are and how we live our lives in supernatural community.
+                    The Gospel is Jesus, and it is this aspect we believe should define who we are and how we live our lives in supernatural community.
                   </p>
                 </motion.div>
                 
@@ -276,7 +276,7 @@ const FallsChurchWebsite = () => {
                   </motion.div>
                   <h3 className="font-display text-2xl font-semibold text-gray-900 mb-4">Mission Minded</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    We love those outside our church family and are eager to let our lives make a difference locally and beyond.
+                    We want to value people "outside" of the church family. A mission-minded church is made up of people who are eager to let their lives be used to make a difference in any given situation.
                   </p>
                 </motion.div>
               </motion.div>
@@ -474,19 +474,19 @@ const FallsChurchWebsite = () => {
             <div>
               <h4 className="font-semibold mb-4 text-gray-200">Service Times</h4>
               <div className="space-y-2 text-gray-400 text-sm">
-                <p>Sunday Worship: 10:00 AM</p>
-                <p>Bible Study: Wed 6:30 PM</p>
-                <p>Youth Group: Tue 7:00 PM</p>
-                <p>Prayer: Fri 7:00 PM</p>
+                <p>Sunday Worship (Summer): 8:30 AM</p>
+                <p>Sunday Worship (Winter): 9:00 AM</p>
+                <p>Bible Study: Weekly</p>
+                <p>Prayer & Fellowship: Regular</p>
               </div>
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-gray-200">Contact</h4>
               <div className="space-y-2 text-gray-400 text-sm">
-                <p>123 Church Street</p>
-                <p>Falls Church, VA 22046</p>
-                <p>(703) 555-0123</p>
-                <p>info@thefallschurch.net</p>
+                <p>Victoria Falls Primary School Hall</p>
+                <p>Victoria Falls, Zimbabwe</p>
+                <p>+263 719073586</p>
+                <p>office@thefallschurch.net</p>
               </div>
             </div>
           </div>

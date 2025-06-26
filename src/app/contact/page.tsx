@@ -146,10 +146,10 @@ export default function ContactPage() {
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <MapPin className="text-gray-400 mt-1 mr-4 flex-shrink-0" size={20} />
-                      <div>
-                        <p className="font-semibold text-gray-900">Visit Us</p>
-                        <p className="text-gray-600">123 Church Street<br />Falls Church, VA 22046</p>
-                      </div>
+                                              <div>
+                          <p className="font-semibold text-gray-900">Visit Us</p>
+                          <p className="text-gray-600">Victoria Falls Primary School Hall<br />Victoria Falls, Zimbabwe</p>
+                        </div>
                     </motion.div>
                     
                     <motion.div 
@@ -158,10 +158,10 @@ export default function ContactPage() {
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <Phone className="text-gray-400 mt-1 mr-4 flex-shrink-0" size={20} />
-                      <div>
-                        <p className="font-semibold text-gray-900">Call Us</p>
-                        <p className="text-gray-600">(703) 555-0123</p>
-                      </div>
+                                              <div>
+                          <p className="font-semibold text-gray-900">Call Us</p>
+                          <p className="text-gray-600">+263 719073586</p>
+                        </div>
                     </motion.div>
                     
                     <motion.div 
@@ -170,10 +170,10 @@ export default function ContactPage() {
                       transition={{ type: "spring", stiffness: 300 }}
                     >
                       <Mail className="text-gray-400 mt-1 mr-4 flex-shrink-0" size={20} />
-                      <div>
-                        <p className="font-semibold text-gray-900">Email Us</p>
-                        <p className="text-gray-600">info@thefallschurch.net</p>
-                      </div>
+                                              <div>
+                          <p className="font-semibold text-gray-900">Email Us</p>
+                          <p className="text-gray-600">office@thefallschurch.net</p>
+                        </div>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -182,10 +182,10 @@ export default function ContactPage() {
                   <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">Service Times</h3>
                   <div className="space-y-4">
                     {[
-                      { service: 'Sunday Worship', time: '10:00 AM', icon: Clock },
-                      { service: 'Bible Study', time: 'Wednesday 6:30 PM', icon: Clock },
-                      { service: 'Youth Group', time: 'Tuesday 7:00 PM', icon: Clock },
-                      { service: 'Prayer Meeting', time: 'Friday 7:00 PM', icon: Clock }
+                      { service: 'Sunday Worship (Summer)', time: '8:30 AM', icon: Clock },
+                      { service: 'Sunday Worship (Winter)', time: '9:00 AM', icon: Clock },
+                      { service: 'Bible Study', time: 'Weekly', icon: Clock },
+                      { service: 'Prayer & Fellowship', time: 'Regular', icon: Clock }
                     ].map((item, index) => (
                       <motion.div 
                         key={index} 
@@ -351,7 +351,7 @@ export default function ContactPage() {
             <motion.div className="text-center mb-16" variants={fadeInUp}>
               <h2 className="font-display text-4xl font-bold text-gray-900 mb-8">Find Us</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                We're located in the heart of Falls Church, Virginia. Come visit us this Sunday!
+                We're located in the beautiful city of Victoria Falls, Zimbabwe. Come visit us this Sunday!
               </p>
             </motion.div>
 
@@ -366,7 +366,7 @@ export default function ContactPage() {
                 <div className="text-center text-gray-600">
                   <MapPin size={48} className="mx-auto mb-4" />
                   <p className="text-lg font-medium">Interactive Map</p>
-                  <p className="text-sm">123 Church Street, Falls Church, VA 22046</p>
+                  <p className="text-sm">Victoria Falls Primary School Hall, Victoria Falls, Zimbabwe</p>
                 </div>
               </div>
             </motion.div>
