@@ -1,30 +1,43 @@
 # The Falls Church Website
 
-A modern, responsive website for The Falls Church - a God-centered community where the Gospel transforms lives, families, and society.
+A modern, responsive website for The Falls Church - a God-centered community in Victoria Falls, Zimbabwe where the Gospel transforms lives, families, and society.
+
+## About The Falls Church
+
+Founded in 2018-2019 by Wessie and Somien van der Westhuizen, The Falls Church began as a church plant in Victoria Falls, Zimbabwe. After initial reconnaissance trips and an information evening in January 2019, the church held its first public meeting in October 2020. The church ordained its first elders in May 2023 and released its first team of deacons in March 2025.
+
+**Location**: Victoria Falls Primary School Hall, Victoria Falls, Zimbabwe  
+**Contact**: +263 719073586 | office@thefallschurch.net  
+**Service Times**: 8:30am (Summer) / 9:00am (Winter)
 
 ## Features
 
-- **Modern Design**: Clean, elegant design with smooth animations and transitions
-- **Responsive**: Fully responsive design that works on all devices
-- **Fast Performance**: Built with Next.js 15 for optimal performance
-- **SEO Optimized**: Proper metadata and structured data for search engines
-- **Accessibility**: WCAG compliant with proper focus management and semantic HTML
-- **Beautiful Typography**: Custom fonts with Playfair Display and Inter
+- **Complete Church Website**: 6 full pages with authentic content and navigation
+- **Interactive Animations**: Framer Motion animations throughout with smooth transitions
+- **Image Carousels**: Auto-playing carousels with manual navigation for church events
+- **Responsive Design**: Mobile-first design that works perfectly on all devices
+- **Google Maps Integration**: Interactive map showing actual church location
+- **Contact Forms**: Functional contact forms with validation
+- **SEO Optimized**: Comprehensive metadata and Open Graph tags
+- **Accessibility**: WCAG compliant with proper focus management
+- **Modern Typography**: Playfair Display headings with Inter body text
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Styling**: Tailwind CSS with custom design system
-- **Icons**: Lucide React
+- **Framework**: Next.js 15 with App Router and TypeScript
+- **Styling**: Tailwind CSS with custom design system and shadcn/ui components
+- **Animations**: Framer Motion for smooth, professional animations
+- **Icons**: Lucide React icon library
 - **Typography**: Google Fonts (Playfair Display, Inter)
-- **Language**: TypeScript
+- **Maps**: Google Maps iframe integration
+- **Forms**: React state management with validation
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18 or later
-- npm
+- pnpm (recommended) or npm
 
 ### Installation
 
@@ -36,11 +49,15 @@ cd TFC-Project
 
 2. Install dependencies:
 ```bash
+pnpm install
+# or
 npm install
 ```
 
 3. Run the development server:
 ```bash
+pnpm dev
+# or
 npm run dev
 ```
 
@@ -49,86 +66,171 @@ npm run dev
 ## Project Structure
 
 ```
-src/
-├── app/
-│   ├── globals.css          # Global styles and Tailwind
-│   ├── layout.tsx           # Root layout with metadata
-│   ├── page.tsx             # Main homepage component
-│   ├── loading.tsx          # Loading UI
-│   ├── error.tsx            # Error boundary
-│   └── not-found.tsx        # 404 page
-├── components/
-│   └── ui/                  # Reusable UI components
-└── lib/
-    └── utils.ts             # Utility functions
+TFC-Project/
+├── src/
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.tsx           # About page with church story and leadership
+│   │   ├── contact/
+│   │   │   └── page.tsx           # Contact page with form and Google Maps
+│   │   ├── know-god/
+│   │   │   └── page.tsx           # Spiritual journey content with biblical teachings
+│   │   ├── sermons/
+│   │   │   └── page.tsx           # Sermons page with filtering and search
+│   │   ├── who-we-are/
+│   │   │   └── page.tsx           # Church history with image carousels
+│   │   ├── globals.css            # Global styles and Tailwind directives
+│   │   ├── header.tsx             # Navigation component
+│   │   ├── layout.tsx             # Root layout with metadata and fonts
+│   │   ├── page.tsx               # Homepage with hero, sermons, and events
+│   │   ├── loading.tsx            # Loading spinner component
+│   │   ├── error.tsx              # Error boundary component
+│   │   └── not-found.tsx          # 404 page component
+│   ├── components/
+│   │   └── ui/
+│   │       └── button.tsx         # Reusable button component
+│   ├── lib/
+│   │   └── utils.ts               # Utility functions (cn, formatDate, etc.)
+│   └── types/
+│       └── index.ts               # TypeScript type definitions
+├── public/
+│   ├── favicon.ico                # Church favicon
+│   └── site.webmanifest          # PWA manifest
+├── components.json                # shadcn/ui configuration
+├── next.config.mjs               # Next.js configuration
+├── package.json                  # Dependencies and scripts
+├── pnpm-lock.yaml               # Package lock file
+├── postcss.config.mjs           # PostCSS configuration
+├── tailwind.config.ts           # Tailwind CSS configuration
+└── tsconfig.json                # TypeScript configuration
 ```
 
-## Features Overview
+## Pages Overview
 
-### Homepage Sections
-- **Hero Section**: Full-screen welcome with church name and navigation
-- **Foundation**: Core values and beliefs
-- **Latest Sermons**: Recent sermon collection with media controls
-- **Upcoming Events**: Church events with RSVP functionality
-- **Call to Action**: Invitation to join the community
+### 🏠 Homepage (`/`)
+- **Hero Section**: Church name with animated typography
+- **Latest Sermons**: Featured sermon cards with play functionality
+- **Upcoming Events**: Church events with RSVP buttons
+- **Call to Action**: Visitor invitation with navigation links
+- **Footer**: Contact info and social media (Facebook: @tfczim)
 
-### Navigation Sections
-- **About Us / Know God / Who We Are**: Church story, leadership, and beliefs
-- **Sermons**: Media library with filters for video, audio, and transcripts
-- **Contact**: Contact information, service times, and contact form
+### ℹ️ About Page (`/about`)
+- **Church Story**: Complete founding history from 2018-2025
+- **Leadership Team**: Wessie and Somien van der Westhuizen profiles
+- **Foundation Values**: God-Centered, Gospel Community, Mission Minded
+- **Quote Component**: Inspirational church quotes with animations
 
-### Responsive Design
-- Mobile-first approach
-- Collapsible navigation for mobile devices
-- Optimized layouts for tablet and desktop
-- Touch-friendly interactions
+### 🙏 Know God Page (`/know-god`)
+- **Biblical Teaching**: Dallas Willard content with scripture verses
+- **Heart & Mind Transformation**: Proverbs, Corinthians, Romans passages
+- **Scripture Cards**: Interactive cards with Matthew, Jeremiah verses
+- **Spiritual Journey**: Content about pursuing God with animations
 
-## Customization
+### 👥 Who We Are Page (`/who-we-are`)
+- **Founding Story**: Authentic 2018-2025 church planting journey
+- **Image Carousels**: Four auto-playing carousels for church events
+- **Partnership Statement**: Apostolic movement connections
+- **Community Events**: Prayer Launch 2020, Family Braai 2024, Fellowship
 
-### Colors
-The website uses a custom color palette defined in `tailwind.config.ts`. You can modify the colors to match your brand:
+### 🎙️ Sermons Page (`/sermons`)
+- **Filtering System**: Filter by series, speaker, topic
+- **Search Functionality**: Search sermons by title or content
+- **Sermon Cards**: Animated cards with speaker, date, duration
+- **Featured Series**: Highlighted sermon collections
 
-```typescript
-colors: {
-  // Add or modify colors here
-}
+### 📞 Contact Page (`/contact`)
+- **Interactive Form**: Contact form with validation and success states
+- **Google Maps**: Embedded map showing Victoria Falls Primary School
+- **Service Times**: Summer (8:30am) and Winter (9:00am) schedules
+- **Contact Info**: Phone (+263 719073586), email, physical address
+- **FAQ Section**: Common questions with expandable answers
+
+## Key Features in Detail
+
+### 🎨 Animations & Interactions
+- **Framer Motion**: Smooth page transitions and element animations
+- **Staggered Children**: Sequential animation of elements
+- **Hover Effects**: Interactive buttons and cards with scale/rotate
+- **Scroll Animations**: Elements animate as they come into view
+- **Loading States**: Professional loading spinners and transitions
+
+### 📱 Responsive Design
+- **Mobile-First**: Optimized for mobile devices first
+- **Breakpoints**: Tailored layouts for sm, md, lg, xl screens
+- **Touch-Friendly**: Large touch targets and gesture support
+- **Navigation**: Collapsible mobile menu with smooth animations
+
+### 🗺️ Google Maps Integration
+- **Interactive Map**: Real Victoria Falls Primary School location
+- **Responsive Embed**: Scales properly on all devices
+- **Location Context**: Integrated with contact information
+
+### 🎠 Image Carousels
+- **Auto-Play**: Images change every 4 seconds automatically
+- **Manual Navigation**: Previous/next arrows and dot indicators
+- **Smooth Transitions**: CSS transitions for professional feel
+- **Event Categories**: Multiple carousels for different church events
+
+## Church Information
+
+### Core Values
+- **God Centered**: Starting point with God as basic reality
+- **Gospel Shaped**: Defined by Jesus and the Gospel message
+- **Family Focused**: Valuing natural and spiritual families
+- **Mission Minded**: Reaching people outside the church
+- **Maturity Motivated**: Growing relationships with God
+
+### Service Schedule
+- **Summer Services**: 8:30 AM (October - March)
+- **Winter Services**: 9:00 AM (April - September)
+- **Bible Study**: Weekly small groups
+- **Prayer & Fellowship**: Regular community gatherings
+
+## Development Commands
+
+```bash
+# Development
+pnpm dev          # Start development server
+npm run dev       # Alternative with npm
+
+# Building
+pnpm build        # Create production build
+npm run build     # Alternative with npm
+
+# Linting
+pnpm lint         # Check code quality
+npm run lint      # Alternative with npm
 ```
-
-### Fonts
-Custom fonts are configured in `src/app/globals.css`. The website uses:
-- **Display Font**: Playfair Display (for headings)
-- **Body Font**: Inter (for body text)
-
-### Content
-Most content can be updated in `src/app/page.tsx`:
-- Update church information in the data arrays
-- Modify section content and copy
-- Add or remove sections as needed
 
 ## Deployment
 
 ### Vercel (Recommended)
-1. Push your code to GitHub
-2. Import your repository to Vercel
-3. Deploy with zero configuration
+1. Connect your GitHub repository to Vercel
+2. Vercel will auto-deploy on every push to main
+3. Zero configuration needed for Next.js projects
 
-### Other Platforms
-Build the project:
+### Manual Build
 ```bash
 pnpm build
 # or
 npm run build
 ```
 
-The `out` folder contains the production build.
+The build output will be in the `.next` folder for deployment to any hosting platform.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+1. **Create Feature Branch**: `git checkout -b feature/your-feature-name`
+2. **Make Changes**: Implement your feature with proper testing
+3. **Commit Changes**: Use descriptive commit messages
+4. **Push Branch**: `git push origin feature/your-feature-name`
+5. **Open Pull Request**: Create PR with detailed description
+
+### Branch Naming Convention
+- `feature/` - New features
+- `fix/` - Bug fixes
+- `update/` - Content or dependency updates
+- `refactor/` - Code improvements
 
 ## License
 
@@ -136,12 +238,18 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-For questions about this website or The Falls Church:
+**The Falls Church**
+- **Website**: [thefallschurch.net](https://thefallschurch.net)
+- **Email**: office@thefallschurch.net
+- **Phone**: +263 719073586
+- **Location**: Victoria Falls Primary School Hall, Victoria Falls, Zimbabwe
+- **Facebook**: [@tfczim](https://www.facebook.com/tfczim)
 
-- **Email**: info@thefallschurch.net
-- **Phone**: (703) 555-0123
-- **Address**: 123 Church Street, Falls Church, VA 22046
+**Technical Support**
+For website technical issues or contributions, please create an issue on GitHub.
 
 ---
 
-Built with ❤️ for The Falls Church community
+Built with ❤️ for The Falls Church community in Victoria Falls, Zimbabwe
+
+*"But if anyone loves God, he is known by God." - 1 Corinthians 8:3*
