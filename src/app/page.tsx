@@ -493,13 +493,15 @@ const FallsChurchWebsite = () => {
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">© 2025 The Falls Church. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <motion.div 
-                className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Facebook size={16} />
-              </motion.div>
+              <Link href="https://www.facebook.com/tfczim" target="_blank" rel="noopener noreferrer">
+                <motion.div 
+                  className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Facebook size={16} />
+                </motion.div>
+              </Link>
               <motion.div 
                 className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer"
                 whileHover={{ scale: 1.1 }}
