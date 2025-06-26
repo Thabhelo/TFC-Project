@@ -24,27 +24,23 @@ A modern, responsive website for The Falls Church - a God-centered community whe
 ### Prerequisites
 
 - Node.js 18 or later
-- pnpm (recommended) or npm
+- npm
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Thabhelo/TFC-Project.git
 cd TFC-Project
 ```
 
 2. Install dependencies:
 ```bash
-pnpm install
-# or
 npm install
 ```
 
 3. Run the development server:
 ```bash
-pnpm dev
-# or
 npm run dev
 ```
 
