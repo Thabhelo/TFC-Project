@@ -49,15 +49,11 @@ cd TFC-Project
 
 2. Install dependencies:
 ```bash
-pnpm install
-# or
 npm install
 ```
 
 3. Run the development server:
 ```bash
-pnpm dev
-# or
 npm run dev
 ```
 
@@ -144,87 +140,6 @@ TFC-Project/
 - **Service Times**: Summer (8:30am) and Winter (9:00am) schedules
 - **Contact Info**: Phone (+263 719073586), email, physical address
 - **FAQ Section**: Common questions with expandable answers
-
-## Key Features in Detail
-
-### 🎨 Animations & Interactions
-- **Framer Motion**: Smooth page transitions and element animations
-- **Staggered Children**: Sequential animation of elements
-- **Hover Effects**: Interactive buttons and cards with scale/rotate
-- **Scroll Animations**: Elements animate as they come into view
-- **Loading States**: Professional loading spinners and transitions
-
-### 📱 Responsive Design
-- **Mobile-First**: Optimized for mobile devices first
-- **Breakpoints**: Tailored layouts for sm, md, lg, xl screens
-- **Touch-Friendly**: Large touch targets and gesture support
-- **Navigation**: Collapsible mobile menu with smooth animations
-
-### 🗺️ Google Maps Integration
-- **Interactive Map**: Real Victoria Falls Primary School location
-- **Responsive Embed**: Scales properly on all devices
-- **Location Context**: Integrated with contact information
-
-### 🎠 Image Carousels
-- **Auto-Play**: Images change every 4 seconds automatically
-- **Manual Navigation**: Previous/next arrows and dot indicators
-- **Smooth Transitions**: CSS transitions for professional feel
-- **Event Categories**: Multiple carousels for different church events
-
-## Church Information
-
-### Core Values
-- **God Centered**: Starting point with God as basic reality
-- **Gospel Shaped**: Defined by Jesus and the Gospel message
-- **Family Focused**: Valuing natural and spiritual families
-- **Mission Minded**: Reaching people outside the church
-- **Maturity Motivated**: Growing relationships with God
-
-### Service Schedule
-- **Summer Services**: 8:30 AM (October - March)
-- **Winter Services**: 9:00 AM (April - September)
-- **Bible Study**: Weekly small groups
-- **Prayer & Fellowship**: Regular community gatherings
-
-## Development Commands
-
-```bash
-# Development
-pnpm dev          # Start development server
-npm run dev       # Alternative with npm
-
-# Building
-pnpm build        # Create production build
-npm run build     # Alternative with npm
-
-# Linting
-pnpm lint         # Check code quality
-npm run lint      # Alternative with npm
-```
-
-## Deployment
-
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Vercel will auto-deploy on every push to main
-3. Zero configuration needed for Next.js projects
-
-### Manual Build
-```bash
-pnpm build
-# or
-npm run build
-```
-
-The build output will be in the `.next` folder for deployment to any hosting platform.
-
-## Contributing
-
-1. **Create Feature Branch**: `git checkout -b feature/your-feature-name`
-2. **Make Changes**: Implement your feature with proper testing
-3. **Commit Changes**: Use descriptive commit messages
-4. **Push Branch**: `git push origin feature/your-feature-name`
-5. **Open Pull Request**: Create PR with detailed description
 
 ### Branch Naming Convention
 - `feature/` - New features
