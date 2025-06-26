@@ -1,117 +1,151 @@
-TheFallsChurch.net
-==================
+# The Falls Church Website
 
-**Version:** 1.0\
+A modern, responsive website for The Falls Church - a God-centered community where the Gospel transforms lives, families, and society.
 
-1\. Overview
-------------
+## Features
 
-### Purpose
+- **Modern Design**: Clean, elegant design with smooth animations and transitions
+- **Responsive**: Fully responsive design that works on all devices
+- **Fast Performance**: Built with Next.js 15 for optimal performance
+- **SEO Optimized**: Proper metadata and structured data for search engines
+- **Accessibility**: WCAG compliant with proper focus management and semantic HTML
+- **Beautiful Typography**: Custom fonts with Playfair Display and Inter
 
-TheFallsChurch.net is the official digital presence of The Falls Church. It aims to provide information about the church's mission, ministries, sermons, events, and ways to connect and give. The website will also serve as a platform for outreach and community building.
+## Tech Stack
 
-2\. Core Features
------------------
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS with custom design system
+- **Icons**: Lucide React
+- **Typography**: Google Fonts (Playfair Display, Inter)
+- **Language**: TypeScript
 
-| Feature | Description |
-| --- | --- |
-| **Home Page** | Church overview, welcome message, call to action, latest news/events |
-| **About Us** | History, leadership, mission, beliefs |
-| **Sermons & Media** | Archived videos, podcasts, and sermon transcripts |
-| **Events Calendar** | Upcoming events with RSVP and details |
-| **Ministries** | Youth, women, men, outreach, music, etc. |
-| **Online Giving** | Secure donation portal with multiple payment methods |
-| **Contact Page** | Map, address, contact form, social links |
+## Getting Started
 
-### Optional Features
+### Prerequisites
 
-| Feature | Description |
-| --- | --- |
-| **Member Portal** | Login area for members - volunteer scheduling, small group materials, etc. |
-| **Blog/News** | Regular updates, devotionals, church news |
-| **Newsletter Signup** | Embedded email signup for updates and event reminders |
+- Node.js 18 or later
+- pnpm (recommended) or npm
 
-3\. Information Architecture
-----------------------------
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd TFC-Project
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+# or
+npm install
+```
+
+3. Run the development server:
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the website.
+
+## Project Structure
 
 ```
-Home
-├── About Us
-│   ├── Our Story
-│   ├── Leadership
-│   └── Beliefs
-├── Sermons
-│   ├── Video
-│   ├── Audio
-│   └── Transcripts
-├── Ministries
-│   ├── Youth
-│   ├── Adults
-│   └── Community
-├── Events
-├── Give
-├── Blog
-├── Contact
-└── Member Login (optional)
-
+src/
+├── app/
+│   ├── globals.css          # Global styles and Tailwind
+│   ├── layout.tsx           # Root layout with metadata
+│   ├── page.tsx             # Main homepage component
+│   ├── loading.tsx          # Loading UI
+│   ├── error.tsx            # Error boundary
+│   └── not-found.tsx        # 404 page
+├── components/
+│   └── ui/                  # Reusable UI components
+└── lib/
+    └── utils.ts             # Utility functions
 ```
-4\. Technology Stack
---------------------
 
-### Core Technologies
+## Features Overview
 
-| Layer | Technology Options |
-| --- | --- |
-| **Frontend** | HTML5, CSS3, JavaScript, React or Next.js |
-| **Backend** | Node.js / Express OR Python / Django |
-| **CMS** (optional) | WordPress, Strapi, or Sanity.io |
-| **Hosting** | Vercel, Netlify, or AWS |
-| **Database** | PostgreSQL / MongoDB (if needed) |
-| **Media Streaming** | Vimeo, YouTube, or integrated custom player |
+### Homepage Sections
+- **Hero Section**: Full-screen welcome with church name and navigation
+- **Foundation**: Core values and beliefs
+- **Latest Sermons**: Recent sermon collection with media controls
+- **Upcoming Events**: Church events with RSVP functionality
+- **Call to Action**: Invitation to join the community
 
-### Additional Services
+### Navigation Sections
+- **About Us / Know God / Who We Are**: Church story, leadership, and beliefs
+- **Sermons**: Media library with filters for video, audio, and transcripts
+- **Contact**: Contact information, service times, and contact form
 
-| Service | Technology Options |
-| --- | --- |
-| **Payment Gateway** | Stripe, PayPal |
-| **Email Integration** | Mailchimp, SendGrid |
-| **Authentication** | Firebase Auth or Auth0 (for Member Portal) |
-| **Analytics** | Google Analytics / Plausible.io |
+### Responsive Design
+- Mobile-first approach
+- Collapsible navigation for mobile devices
+- Optimized layouts for tablet and desktop
+- Touch-friendly interactions
 
-5\. Security Considerations
----------------------------
+## Customization
 
--   HTTPS with SSL
--   Secure payment processing
--   CSRF/XSS protection
--   Input validation on all forms
--   GDPR and privacy compliance for newsletter and contact forms
+### Colors
+The website uses a custom color palette defined in `tailwind.config.ts`. You can modify the colors to match your brand:
 
-6\. Performance and Scalability
--------------------------------
+```typescript
+colors: {
+  // Add or modify colors here
+}
+```
 
--   Optimized images and lazy loading
--   CDN for static assets (Cloudflare, AWS CloudFront)
--   Modular design to allow future growth (e.g., livestreaming, mobile app)
+### Fonts
+Custom fonts are configured in `src/app/globals.css`. The website uses:
+- **Display Font**: Playfair Display (for headings)
+- **Body Font**: Inter (for body text)
 
-7\. Deployment & Maintenance
-----------------------------
+### Content
+Most content can be updated in `src/app/page.tsx`:
+- Update church information in the data arrays
+- Modify section content and copy
+- Add or remove sections as needed
 
--   CI/CD with GitHub Actions or Netlify/Vercel pipelines
--   Weekly content updates
--   Monthly backups and plugin updates
--   Admin dashboard training for church staff
+## Deployment
 
-8\. Appendices
----------------
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Deploy with zero configuration
 
-### Required Assets
+### Other Platforms
+Build the project:
+```bash
+pnpm build
+# or
+npm run build
+```
 
--   **Brand assets:** Logos, colors, typography
--   **Content outline:** Draft copy and media needed
--   **Competitor inspiration:** Examples of similar church sites
--   **User stories:** Sample personas and user flow
+The `out` folder contains the production build.
 
-* * * * *
+## Contributing
 
-*This README serves as the project specification and reference document for the TheFallsChurch.net website development project.*
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+For questions about this website or The Falls Church:
+
+- **Email**: info@thefallschurch.net
+- **Phone**: (703) 555-0123
+- **Address**: 123 Church Street, Falls Church, VA 22046
+
+---
+
+Built with ❤️ for The Falls Church community
