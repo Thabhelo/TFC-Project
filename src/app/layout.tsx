@@ -25,6 +25,19 @@ export const metadata: Metadata = {
   authors: [{ name: 'The Falls Church' }],
   creator: 'The Falls Church',
   publisher: 'The Falls Church',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
+  manifest: '/manifest.json',
+  icons: [
+    {
+      rel: 'icon',
+      url: '/tfc-logo-64.webp',
+      type: 'image/webp',
+    },
+    {
+      rel: 'apple-touch-icon',
+      url: '/tfc-logo-128.webp',
+    },
+  ],
   openGraph: {
     title: 'The Falls Church - A God-Centered Community',
     description: 'A God-centered community where the Gospel transforms lives, families, and society.',
@@ -52,6 +65,14 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
+  other: {
+    // DNS prefetch for external resources
+    'dns-prefetch': 'https://fonts.googleapis.com, https://fonts.gstatic.com',
+    // Preconnect for faster loading
+    'preconnect': 'https://fonts.googleapis.com, https://fonts.gstatic.com',
+    // Critical resource hints
+    'preload': '/tfc-logo.webp as image type=image/webp, /favicon.ico as image type=image/x-icon',
+  },
 }
 
 export default function RootLayout({
@@ -61,49 +82,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="/_next/static/media/inter-cyrillic-ext-wght-normal.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/_next/static/media/playfair-display-cyrillic-ext-wght-normal.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        
-        {/* DNS prefetch for external resources */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        
-        {/* Preconnect for faster loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Viewport meta for better mobile performance */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        
-        {/* Web App Manifest */}
-        <link rel="manifest" href="/manifest.json" />
-        
-        {/* Optimized icons */}
-        <link rel="icon" href="/tfc-logo-64.webp" type="image/webp" />
-        <link rel="apple-touch-icon" href="/tfc-logo-128.webp" />
-        
-        {/* Prefetch critical pages */}
-        <link rel="prefetch" href="/about" />
-        <link rel="prefetch" href="/contact" />
-        
-        {/* Critical resource hints */}
-        <link rel="preload" href="/tfc-logo.webp" as="image" type="image/webp" />
-        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
-        
+      <body className={`${inter.className} antialiased`}>
         {/* Service worker registration for caching */}
         {process.env.NODE_ENV === 'production' && (
           <script
@@ -118,8 +97,6 @@ export default function RootLayout({
             }}
           />
         )}
-      </head>
-      <body className={`${inter.className} antialiased`}>
         {children}
       </body>
     </html>

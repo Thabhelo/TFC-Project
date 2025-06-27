@@ -38,7 +38,7 @@ const LazySection: React.FC<LazySectionProps> = ({
     }
 
     return () => observer.disconnect();
-  }, [threshold, rootMargin, hasLoaded]);
+  }, [threshold, rootMargin]);
 
   return (
     <div ref={ref} className={className}>

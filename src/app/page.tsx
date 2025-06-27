@@ -32,8 +32,9 @@ const FallsChurchWebsite = () => {
     };
     
     // Passive event listener for better performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const scrollOptions: AddEventListenerOptions = { passive: true };
+    window.addEventListener('scroll', handleScroll, scrollOptions);
+    return () => window.removeEventListener('scroll', handleScroll, scrollOptions);
   }, []);
 
   // Memoize navigation to prevent re-renders

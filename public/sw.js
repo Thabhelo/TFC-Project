@@ -6,10 +6,13 @@ const urlsToCache = [
   '/know-god',
   '/who-we-are',
   '/sermons',
-  '/tfc-logo.jpg',
+  '/tfc-logo.webp',
+  '/tfc-logo-64.webp',
+  '/tfc-logo-128.webp',
+  '/tfc-logo-256.webp',
+  '/tfc-logo-512.webp',
   '/favicon.ico',
-  '/_next/static/css/',
-  '/_next/static/js/',
+  '/manifest.json',
 ];
 
 // Install event - cache resources
@@ -42,13 +45,14 @@ self.addEventListener('fetch', (event) => {
             return response;
           }
           
-          // Clone the response
-          const responseToCache = response.clone();
-          
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
+          // Cache dynamic Next.js assets
+          if (event.request.url.includes('/_next/static/')) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+          }
           
           return response;
         });
