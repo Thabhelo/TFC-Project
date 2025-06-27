@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Menu, X, Calendar, Play, Users, Heart, MapPin, Phone, Mail, Facebook, Instagram, Youtube, ArrowRight, Clock, User, Quote } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import LazySection from '@/components/LazySection';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -27,19 +30,24 @@ const FallsChurchWebsite = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Passive event listener for better performance
+    const scrollOptions: AddEventListenerOptions = { passive: true };
+    window.addEventListener('scroll', handleScroll, scrollOptions);
+    return () => window.removeEventListener('scroll', handleScroll, scrollOptions);
   }, []);
 
-  const navigation = [
+  // Memoize navigation to prevent re-renders
+  const navigation = React.useMemo(() => [
     { name: 'About Us', href: '/about' },
     { name: 'Know God', href: '/know-god' },
     { name: 'Who We Are', href: '/who-we-are' },
     { name: 'Sermons', href: '/sermons' },
     { name: 'Get In Touch With Us', href: '/contact' }
-  ];
+  ], []);
 
-  const recentSermons = [
+  // Memoize sermon data
+  const recentSermons = React.useMemo(() => [
     {
       title: "Faith Over Fear",
       speaker: "Pastor John Smith",
@@ -58,9 +66,10 @@ const FallsChurchWebsite = () => {
       date: "Jan 7, 2024",
       duration: "38 min"
     }
-  ];
+  ], []);
 
-  const upcomingEvents = [
+  // Memoize events data
+  const upcomingEvents = React.useMemo(() => [
     {
       title: "Community Prayer Night",
       date: "Friday, February 2nd",
@@ -73,13 +82,13 @@ const FallsChurchWebsite = () => {
       time: "9:00 AM - 6:00 PM",
       location: "Camp Mountain View"
     }
-  ];
+  ], []);
 
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Minimal Navigation - Only visible when scrolled */}
       {isScrolled && (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300 nav-header">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex items-center justify-between h-16">
               <Link href="/" className="font-display text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
@@ -92,6 +101,7 @@ const FallsChurchWebsite = () => {
                     key={item.href}
                     href={item.href}
                     className="font-medium text-gray-600 hover:text-gray-900 text-sm tracking-wide uppercase transition-colors"
+                    prefetch={true}
                   >
                     {item.name}
                   </Link>
@@ -101,6 +111,7 @@ const FallsChurchWebsite = () => {
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden p-2 text-gray-900"
+                aria-label="Toggle mobile menu"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -116,6 +127,7 @@ const FallsChurchWebsite = () => {
                     href={item.href}
                     className="block w-full text-left font-medium text-gray-600 hover:text-gray-900 transition-colors text-sm tracking-wide uppercase"
                     onClick={() => setMobileMenuOpen(false)}
+                    prefetch={true}
                   >
                     {item.name}
                   </Link>
@@ -128,21 +140,24 @@ const FallsChurchWebsite = () => {
 
       <main>
         <div className="space-y-0">
-          {/* Hero Section - Matching the provided image */}
+          {/* Hero Section - Optimized with better performance */}
           <motion.section 
-            className="relative min-h-screen flex flex-col justify-center items-center text-white overflow-hidden"
+            className="relative min-h-screen flex flex-col justify-center items-center text-white overflow-hidden hero-section gpu-accelerated"
             initial="initial"
             animate="animate"
             variants={staggerContainer}
           >
-            {/* Background with overlay */}
+            {/* Optimized background with better performance */}
             <div className="absolute inset-0 bg-gray-900">
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60"></div>
-              {/* Simulated church service background */}
-              <div className="w-full h-full bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 opacity-80"></div>
+              {/* Simulated church service background - optimized */}
+              <div 
+                className="w-full h-full bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 opacity-80"
+                style={{ willChange: 'transform' }}
+              ></div>
             </div>
             
-            {/* Content */}
+            {/* Content - optimized for performance */}
             <motion.div 
               className="relative z-10 text-center px-6 flex-1 flex flex-col justify-center"
               variants={fadeInUp}
@@ -150,12 +165,13 @@ const FallsChurchWebsite = () => {
               <motion.h1 
                 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-wider leading-none"
                 variants={fadeInUp}
+                style={{ contain: 'layout' }}
               >
                 THE FALLS<br />CHURCH
               </motion.h1>
             </motion.div>
 
-            {/* Scroll indicator */}
+            {/* Optimized scroll indicator */}
             <motion.div 
               className="relative z-10 mb-12"
               variants={fadeInUp}
@@ -164,12 +180,14 @@ const FallsChurchWebsite = () => {
                 className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center hover:bg-white/10 transition-colors duration-300 cursor-pointer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
+                role="button"
+                aria-label="Scroll down"
               >
                 <ChevronDown size={20} className="text-white animate-bounce" />
               </motion.div>
             </motion.div>
 
-            {/* Bottom Navigation */}
+            {/* Optimized bottom navigation */}
             <motion.div 
               className="relative z-10 w-full"
               variants={fadeInUp}
@@ -187,6 +205,7 @@ const FallsChurchWebsite = () => {
                         <Link
                           href={item.href}
                           className="text-white/90 hover:text-white font-medium text-sm md:text-base tracking-wider uppercase transition-colors duration-300 hover:underline underline-offset-4"
+                          prefetch={true}
                         >
                           {item.name}
                         </Link>
@@ -198,14 +217,15 @@ const FallsChurchWebsite = () => {
             </motion.div>
           </motion.section>
 
-          {/* About Preview Section */}
-          <motion.section 
-            className="py-20 bg-white"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+          {/* About Preview Section - Lazy Loaded */}
+          <LazySection>
+            <motion.section 
+              className="py-20 bg-white"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
             <div className="max-w-6xl mx-auto px-6">
               <motion.div className="text-center mb-16" variants={fadeInUp}>
                 <motion.h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6" variants={fadeInUp}>
@@ -282,15 +302,17 @@ const FallsChurchWebsite = () => {
               </motion.div>
             </div>
           </motion.section>
+          </LazySection>
 
-          {/* Latest Sermons */}
-          <motion.section 
-            className="py-20 bg-gray-50"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+          {/* Latest Sermons - Lazy Loaded */}
+          <LazySection>
+            <motion.section 
+              className="py-20 bg-gray-50"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
             <div className="max-w-6xl mx-auto px-6">
               <motion.div className="text-center mb-16" variants={fadeInUp}>
                 <motion.h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6" variants={fadeInUp}>
@@ -343,15 +365,17 @@ const FallsChurchWebsite = () => {
               </motion.div>
             </div>
           </motion.section>
+          </LazySection>
 
-          {/* Upcoming Events */}
-          <motion.section 
-            className="py-20 bg-white"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+          {/* Upcoming Events - Lazy Loaded */}
+          <LazySection>
+            <motion.section 
+              className="py-20 bg-white"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
             <div className="max-w-6xl mx-auto px-6">
               <motion.div className="text-center mb-16" variants={fadeInUp}>
                 <motion.h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-6" variants={fadeInUp}>
@@ -408,15 +432,17 @@ const FallsChurchWebsite = () => {
               </motion.div>
             </div>
           </motion.section>
+          </LazySection>
 
-          {/* Call to Action */}
-          <motion.section 
-            className="py-20 bg-gray-900 text-white"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+          {/* Call to Action - Lazy Loaded */}
+          <LazySection>
+            <motion.section 
+              className="py-20 bg-gray-900 text-white"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
             <div className="max-w-4xl mx-auto text-center px-6">
               <motion.h2 className="font-display text-4xl md:text-5xl font-bold mb-6" variants={fadeInUp}>
                 Ready to Begin Your Journey?
@@ -444,11 +470,13 @@ const FallsChurchWebsite = () => {
               </motion.div>
             </div>
           </motion.section>
+          </LazySection>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* Footer - Lazy Loaded */}
+      <LazySection>
+        <footer className="bg-gray-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div>
@@ -520,6 +548,7 @@ const FallsChurchWebsite = () => {
           </div>
         </div>
       </footer>
+      </LazySection>
     </div>
   );
 };

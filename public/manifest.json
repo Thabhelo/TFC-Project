@@ -1,0 +1,39 @@
+{
+  "name": "The Falls Church",
+  "short_name": "TFC",
+  "description": "A God-centered community where the Gospel transforms lives, families, and society.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/tfc-logo-64.webp",
+      "sizes": "64x64",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/tfc-logo-128.webp",
+      "sizes": "128x128",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/tfc-logo-256.webp",
+      "sizes": "256x256",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/tfc-logo-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["religion", "community", "lifestyle"],
+  "lang": "en",
+  "dir": "ltr"
+} 
