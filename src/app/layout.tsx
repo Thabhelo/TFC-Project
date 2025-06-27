@@ -25,7 +25,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'The Falls Church' }],
   creator: 'The Falls Church',
   publisher: 'The Falls Church',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   manifest: '/manifest.json',
   icons: [
     {
@@ -73,6 +72,12 @@ export const metadata: Metadata = {
     // Critical resource hints
     'preload': '/tfc-logo.webp as image type=image/webp, /favicon.ico as image type=image/x-icon',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
