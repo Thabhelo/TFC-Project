@@ -165,6 +165,5 @@ For website technical issues or contributions, please create an issue on GitHub.
 
 ---
 
-Built with ❤️ for The Falls Church community in Victoria Falls, Zimbabwe
-
+Built with ❤️ for The Falls Church.
 *"But if anyone loves God, he is known by God." - 1 Corinthians 8:3*
