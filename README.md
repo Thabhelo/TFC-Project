@@ -37,7 +37,7 @@ Founded in 2018-2019 by Wessie and Somien van der Westhuizen, The Falls Church b
 ### Prerequisites
 
 - Node.js 18 or later
-- pnpm (recommended) or npm
+- npm
 
 ### Installation
 
