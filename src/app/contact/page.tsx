@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import Link from 'next/link'
+import emailjs from '@emailjs/browser'
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -30,25 +31,99 @@ export default function ContactPage() {
   })
   
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      })
-    }, 3000)
+    setIsLoading(true)
+    setError('')
+
+    try {
+      // Check if environment variables are properly loaded
+      if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID) {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.')
+      }
+
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'The Falls Church',
+      }
+
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+
+      setIsSubmitted(true)
+      
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      
+      // Reset form after 5 seconds
+      timeoutRef.current = setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        })
+        timeoutRef.current = null
+      }, 5000)
+
+    } catch (error: unknown) {
+      console.error('EmailJS Error Details:', error)
+      
+      let errorMessage = 'Unknown error occurred'
+      
+      if (error instanceof Error) {
+        errorMessage = error.message
+      } else if (typeof error === 'object' && error !== null) {
+        // Handle EmailJS specific errors
+        const emailjsError = error as any
+        if (emailjsError.text) {
+          errorMessage = emailjsError.text
+        } else if (emailjsError.status) {
+          if (emailjsError.status === 400) {
+            errorMessage = 'Template not found. Please create an email template in your EmailJS dashboard first.'
+          } else {
+            errorMessage = `Service error (${emailjsError.status}): ${emailjsError.text || 'Please check your EmailJS configuration'}`
+          }
+        } else {
+          errorMessage = JSON.stringify(error)
+        }
+      } else if (typeof error === 'string') {
+        errorMessage = error
+      }
+      
+      setError(`Failed to send message: ${errorMessage}. Please try again or contact us directly.`)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -206,7 +281,22 @@ export default function ContactPage() {
 
               {/* Contact Form */}
               <motion.div className="bg-gray-50 border border-gray-200 p-8 rounded-lg" variants={fadeInUp}>
-                <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h3>
+                                <h3 className="font-display text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h3>
+                
+                {/* Error Message */}
+                {error && (
+                  <motion.div 
+                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center"
+                    aria-live="assertive"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    aria-live="assertive"
+                  >
+                    <AlertCircle size={20} className="text-red-500 mr-3 flex-shrink-0" />
+                    <p className="text-red-700">{error}</p>
+                  </motion.div>
+                )}
                 
                 {isSubmitted ? (
                   <motion.div 
@@ -239,7 +329,8 @@ export default function ContactPage() {
                           onChange={handleChange}
                           placeholder="First Name" 
                           required
-                          className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none bg-white rounded-lg transition-all duration-300"
+                          disabled={isLoading}
+                          className={getInputClassName(isLoading)}
                         />
                       </motion.div>
                       <motion.div
@@ -253,7 +344,10 @@ export default function ContactPage() {
                           onChange={handleChange}
                           placeholder="Last Name" 
                           required
-                          className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none bg-white rounded-lg transition-all duration-300"
+                          disabled={isLoading}
+                          className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none rounded-lg transition-all duration-300 ${
+                            isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
+                          }`}
                         />
                       </motion.div>
                     </div>
@@ -269,7 +363,10 @@ export default function ContactPage() {
                         onChange={handleChange}
                         placeholder="Email Address" 
                         required
-                        className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none bg-white rounded-lg transition-all duration-300"
+                        disabled={isLoading}
+                        className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none rounded-lg transition-all duration-300 ${
+                          isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
+                        }`}
                       />
                     </motion.div>
                     
@@ -283,7 +380,10 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Phone Number" 
-                        className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none bg-white rounded-lg transition-all duration-300"
+                        disabled={isLoading}
+                        className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none rounded-lg transition-all duration-300 ${
+                          isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
+                        }`}
                       />
                     </motion.div>
                     
@@ -296,7 +396,10 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none bg-white rounded-lg transition-all duration-300"
+                        disabled={isLoading}
+                        className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none rounded-lg transition-all duration-300 ${
+                          isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
+                        }`}
                       >
                         <option value="">How can we help you?</option>
                         <option value="general">General Information</option>
@@ -319,18 +422,30 @@ export default function ContactPage() {
                         onChange={handleChange}
                         placeholder="Your Message" 
                         required
-                        className="w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none resize-none bg-white rounded-lg transition-all duration-300"
+                        disabled={isLoading}
+                        className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none resize-none rounded-lg transition-all duration-300 ${
+                          isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
+                        }`}
                       ></textarea>
                     </motion.div>
                     
                     <motion.button 
                       type="submit"
-                      className="w-full bg-gray-900 text-white py-4 font-semibold hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      disabled={isLoading}
+                      className={`w-full py-4 font-semibold transition-colors duration-300 rounded-lg flex items-center justify-center ${
+                        isLoading 
+                          ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                          : 'bg-gray-900 text-white hover:bg-gray-700'
+                      }`}
+                      whileHover={!isLoading ? { scale: 1.02 } : {}}
+                      whileTap={!isLoading ? { scale: 0.98 } : {}}
                     >
-                      <Send size={20} className="mr-2" />
-                      Send Message
+                      {isLoading ? (
+                        <Loader2 size={20} className="mr-2 animate-spin" />
+                      ) : (
+                        <Send size={20} className="mr-2" />
+                      )}
+                      {isLoading ? 'Sending...' : 'Send Message'}
                     </motion.button>
                   </form>
                 )}
