@@ -313,9 +313,7 @@ export default function ContactPage() {
                           placeholder="First Name" 
                           required
                           disabled={isLoading}
-                          className={`w-full p-4 border border-gray-300 focus:border-gray-500 focus:outline-none rounded-lg transition-all duration-300 ${
-                            isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'
-                          }`}
+                          className={getInputClassName(isLoading)}
                         />
                       </motion.div>
                       <motion.div
