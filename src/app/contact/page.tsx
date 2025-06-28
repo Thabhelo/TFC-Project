@@ -287,6 +287,7 @@ export default function ContactPage() {
                 {error && (
                   <motion.div 
                     className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center"
+                    aria-live="assertive"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
