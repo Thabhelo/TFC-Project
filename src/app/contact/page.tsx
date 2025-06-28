@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import Link from 'next/link'
@@ -33,6 +33,16 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -64,11 +74,15 @@ export default function ContactPage() {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       )
 
-      console.log('Email sent successfully:', response)
       setIsSubmitted(true)
       
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      
       // Reset form after 5 seconds
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsSubmitted(false)
         setFormData({
           firstName: '',
@@ -78,6 +92,7 @@ export default function ContactPage() {
           subject: '',
           message: ''
         })
+        timeoutRef.current = null
       }, 5000)
 
     } catch (error: unknown) {
@@ -275,6 +290,7 @@ export default function ContactPage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
+                    aria-live="assertive"
                   >
                     <AlertCircle size={20} className="text-red-500 mr-3 flex-shrink-0" />
                     <p className="text-red-700">{error}</p>
