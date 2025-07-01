@@ -26,7 +26,7 @@ export default function NotFound() {
             <p>Need help finding something?</p>
             <p className="font-medium mt-2">Contact us at:</p>
             <p className="font-medium">info@thefallschurch.net</p>
-            <p className="font-medium">(703) 555-0123</p>
+            <p className="font-medium">(263)719073586</p>
           </div>
         </div>
       </div>

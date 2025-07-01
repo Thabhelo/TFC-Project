@@ -167,7 +167,7 @@ const FallsChurchWebsite = () => {
                 variants={fadeInUp}
                 style={{ contain: 'layout' }}
               >
-                THE FALLS<br />CHURCH
+                THE FALLS<br />CHURCH <br /><p style={{ fontFamily:'bu' , fontSize: '26px'}}>Victoria Falls - Zimbabwe</p>
               </motion.h1>
             </motion.div>
 
