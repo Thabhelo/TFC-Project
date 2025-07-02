@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import { Users, Heart, Star, Music, Baby, Zap, Palette, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
+// import braai1 from '/assets/images/whoweare-family-braai.jpg'
+import braai1 from '../../../public/assets/images/whoweare-family-braai(1).jpg'
+
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -40,25 +43,27 @@ const ImageCarousel = ({ images, title }: { images: string[], title: string }) =
   }
 
   return (
-    <motion.div 
+    <motion.div
       className="relative w-full h-80 bg-gray-200 rounded-lg overflow-hidden"
       variants={fadeInUp}
+      style={{
+        backgroundImage: `url('/assets/images/${images[currentIndex]}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div 
+        <motion.div
           className="text-center p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="w-20 h-20 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span className="text-white text-xs font-medium">{currentIndex + 1}/{images.length}</span>
-          </div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">{title}</h3>
-          <p className="text-sm text-gray-500">Image placeholder - Carousel with {images.length} images</p>
+
         </motion.div>
       </div>
-      
+
       {/* Navigation buttons */}
       <button
         onClick={goToPrevious}
@@ -66,23 +71,22 @@ const ImageCarousel = ({ images, title }: { images: string[], title: string }) =
       >
         <ChevronLeft size={20} className="text-gray-600" />
       </button>
-      
+
       <button
         onClick={goToNext}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-colors"
       >
         <ChevronRight size={20} className="text-gray-600" />
       </button>
-      
+
       {/* Dots indicator */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-white' : 'bg-white/50'
-            }`}
+            className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? 'bg-white' : 'bg-white/50'
+              }`}
           />
         ))}
       </div>
@@ -92,10 +96,10 @@ const ImageCarousel = ({ images, title }: { images: string[], title: string }) =
 
 export default function WhoWeArePage() {
   // Placeholder images for carousels
-  const moreOfWhoWeAreImages = ['img1.jpg', 'img2.jpg', 'img3.jpg']
-  const prayerLaunchImages = ['prayer1.jpg', 'prayer2.jpg', 'prayer3.jpg']
-  const familyBraaiImages = ['braai1.jpg', 'braai2.jpg', 'braai3.jpg']
-  const joyTogetherImages = ['joy1.jpg', 'joy2.jpg', 'joy3.jpg']
+  const moreOfWhoWeAreImages = ['whoweare-moreof.jpg', 'whoweare-moreof(1).jpg', 'whoweare-moreof(2).jpg']
+  const prayerLaunchImages = ['whoweare-prayer-launch.jpg', 'whoweare-prayer-launch(1).jpg', 'whoweare-prayer-launch(2).jpg']
+  const familyBraaiImages = ['whoweare-family-braai.jpg', 'whoweare-family-braai(1).jpg', 'whoweare-family-braai(2).jpg']
+  const joyTogetherImages = ['whoweare-thejoy.jpg', 'whoweare-thejoy(1).jpg', 'whoweare-thejoy(2).jpg']
 
   return (
     <div className="min-h-screen bg-white">
@@ -109,7 +113,7 @@ export default function WhoWeArePage() {
             >
               THE FALLS CHURCH
             </Link>
-            
+
             <div className="hidden lg:flex items-center space-x-8">
               <Link href="/about" className="font-medium text-gray-600 hover:text-gray-900 text-sm tracking-wide uppercase transition-colors">
                 About Us
@@ -133,21 +137,29 @@ export default function WhoWeArePage() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <motion.section 
-          className="py-20 bg-gradient-to-br from-purple-50 to-pink-50"
+
+        <motion.section
+          className="py-20 bg-gradient-to-br from-gray-50 to-white"
           initial="initial"
           animate="animate"
           variants={staggerContainer}
+          style={{
+            backgroundImage: "url('/assets/images/index-maturity-motivated.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: 350
+          }}
         >
           <div className="max-w-6xl mx-auto px-6">
             <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <motion.h1 
+              <motion.h1
                 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6"
                 variants={fadeInUp}
+                style={{ color: 'rgb(255, 255, 255)' }}
               >
-                Who We Are
               </motion.h1>
-              <motion.div 
+              <motion.div
                 className="w-24 h-0.5 bg-gray-300 mx-auto mb-8"
                 variants={fadeInUp}
                 initial={{ width: 0 }}
@@ -159,7 +171,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* Our Story Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-white"
           initial="initial"
           whileInView="animate"
@@ -196,7 +208,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* More Of Who We Are Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-gray-50"
           initial="initial"
           whileInView="animate"
@@ -212,7 +224,7 @@ export default function WhoWeArePage() {
               <motion.div variants={fadeInUp}>
                 <ImageCarousel images={moreOfWhoWeAreImages} title="Our Community" />
               </motion.div>
-              
+
               <motion.div variants={fadeInUp}>
                 <p className="text-lg text-gray-700 leading-relaxed">
                   Our church is not part of denomination or church family; but we partner with leaders from a specific apostolic movement and other relating churches from various countries in the world, pursuing the Gospel mission God has given the church. We believe in this for the purpose of accountability, growth and to fulfill all that God has for us.
@@ -223,7 +235,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* Prayer Launch 2020 Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-white"
           initial="initial"
           whileInView="animate"
@@ -242,7 +254,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* Family Braai Day 2024 Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-gray-50"
           initial="initial"
           whileInView="animate"
@@ -261,7 +273,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* The Joy Of Being Together Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-white"
           initial="initial"
           whileInView="animate"
@@ -280,7 +292,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* Call to Action */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-gray-900 text-white"
           initial="initial"
           whileInView="animate"
@@ -316,7 +328,7 @@ export default function WhoWeArePage() {
         </motion.section>
 
         {/* Footer */}
-        <motion.footer 
+        <motion.footer
           className="py-8 bg-gray-100 border-t"
           initial="initial"
           whileInView="animate"

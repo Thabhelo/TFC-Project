@@ -61,33 +61,38 @@ export default function KnowGodPage() {
           initial="initial"
           animate="animate"
           variants={staggerContainer}
+          style={{
+            backgroundImage: "url('/assets/images/whoweare-moreof(1).jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: 350
+          }}
         >
           <div className="max-w-6xl mx-auto px-6">
             <motion.div className="text-center mb-16" variants={fadeInUp}>
               <motion.h1 
-                className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+                className="font-display text-5xl md:text-6xl font-bold text-gray-300 mb-6"
                 variants={fadeInUp}
+                // text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+                style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff', color: 'white'}}
               >
-                Know God
+                
               </motion.h1>
-              <motion.div 
-                className="w-24 h-0.5 bg-gray-300 mx-auto mb-8"
-                variants={fadeInUp}
-                initial={{ width: 0 }}
-                animate={{ width: 96 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              />
+       
               <motion.blockquote 
                 className="text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium italic mb-4"
                 variants={fadeInUp}
+                style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff', color: 'white'}}
               >
-                "BUT IF ANYONE LOVES GOD, HE IS KNOWN BY GOD."
+
               </motion.blockquote>
               <motion.cite 
                 className="text-lg text-gray-500 font-semibold tracking-wide"
                 variants={fadeInUp}
+                style={{ textShadow: '0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff', color: 'white'}}
               >
-                1 CORINTHIANS 8:3
+
               </motion.cite>
             </motion.div>
           </div>

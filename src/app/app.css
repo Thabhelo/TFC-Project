@@ -1,0 +1,28 @@
+/* .sermons {
+    background-image: url('/assets/images/index-gospel-shaped.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+/* 
+.about-us {
+    background-image: url('/assets/images/pic07.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+};
+
+.landing-section {
+    background-image: url('/assets/images/index-logo.jpg');
+}; */
+
+.about-logo {
+    height: 400px;
+}
+
+@media (max-width: 575px) {
+    .about-logo {
+        height: 250px;
+    }
+    
+}

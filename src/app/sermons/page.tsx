@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Play, Clock, User, Calendar, Filter, Search } from 'lucide-react'
 import Link from 'next/link'
 
+import '../app.css'
+
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -24,21 +26,21 @@ export default function SermonsPage() {
   const [searchTerm, setSearchTerm] = useState('')
 
   const sermons = [
-    { title: 'Walking in Faith', speaker: 'Pastor John Smith', date: 'June 23, 2025', duration: '42 min', type: 'video', series: 'Faith Journey' },
-    { title: 'The Power of Prayer', speaker: 'Pastor Sarah Johnson', date: 'June 16, 2025', duration: '38 min', type: 'video', series: 'Spiritual Disciplines' },
-    { title: 'Love Your Neighbor', speaker: 'Pastor John Smith', date: 'June 9, 2025', duration: '45 min', type: 'audio', series: 'Love in Action' },
-    { title: 'Finding Peace in Chaos', speaker: 'Pastor Sarah Johnson', date: 'June 2, 2025', duration: '40 min', type: 'video', series: 'Peace in Storms' },
-    { title: 'The Heart of Worship', speaker: 'Pastor John Smith', date: 'May 26, 2025', duration: '35 min', type: 'audio', series: 'True Worship' },
-    { title: 'Living with Purpose', speaker: 'Michael Davis', date: 'May 19, 2025', duration: '43 min', type: 'video', series: 'Purpose Driven Life' },
-    { title: 'Grace and Forgiveness', speaker: 'Pastor Sarah Johnson', date: 'May 12, 2025', duration: '41 min', type: 'transcript', series: 'Amazing Grace' },
-    { title: 'Building Strong Families', speaker: 'Pastor John Smith', date: 'May 5, 2025', duration: '39 min', type: 'video', series: 'Family Foundation' }
+    { thumbnail: 'thumbnail1.jpg', video: 'Sunday 12 January A Celebration of Voices - Various Testimonies.mp4', title: 'Walking in Faith', speaker: 'Pastor John Smith', date: 'June 23, 2025', duration: '42 min', type: 'video', series: 'Faith Journey' },
+    { thumbnail: 'thumbnail2.jpg', video: 'Sunday 12 January A Celebration of Voices - Various Testimonies.mp4', title: 'The Power of Prayer', speaker: 'Pastor Sarah Johnson', date: 'June 16, 2025', duration: '38 min', type: 'video', series: 'Spiritual Disciplines' },
+    { thumbnail: 'thumbnail3.jpg', video: 'Sunday 16 February Stewarding Your Children Bertus.mp4', title: 'Love Your Neighbor', speaker: 'Pastor John Smith', date: 'June 9, 2025', duration: '45 min', type: 'audio', series: 'Love in Action' },
+    { thumbnail: 'thumbnail3.jpg', video: 'Sunday 16 March The Story of Adam and Eve Jamie.mp4', title: 'Finding Peace in Chaos', speaker: 'Pastor Sarah Johnson', date: 'June 2, 2025', duration: '40 min', type: 'video', series: 'Peace in Storms' },
+    { thumbnail: 'thumbnail2.jpg', video: 'Sunday 18 May The Life of Jacob Jeremy Newhouse.mp4', title: 'The Heart of Worship', speaker: 'Pastor John Smith', date: 'May 26, 2025', duration: '35 min', type: 'audio', series: 'True Worship' },
+    { thumbnail: 'thumbnail1.jpg', video: 'Sunday 19 January Jamie Stewarding Your Money.mp4', title: 'Living with Purpose', speaker: 'Michael Davis', date: 'May 19, 2025', duration: '43 min', type: 'video', series: 'Purpose Driven Life' },
+    { thumbnail: 'thumbnail2.jpg', video: 'Sunday 1 June The Life of Joseph.mp4', title: 'Grace and Forgiveness', speaker: 'Pastor Sarah Johnson', date: 'May 12, 2025', duration: '41 min', type: 'transcript', series: 'Amazing Grace' },
+    { thumbnail: 'thumbnail1.jpg', video: 'Sunday 20 April The Crucifixion and Resurrection of Jesus Jamie.mp4', title: 'Building Strong Families', speaker: 'Pastor John Smith', date: 'May 5, 2025', duration: '39 min', type: 'video', series: 'Family Foundation' }
   ]
 
   const filteredSermons = sermons.filter(sermon => {
     const matchesFilter = activeFilter === 'all' || sermon.type === activeFilter
-    const matchesSearch = sermon.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         sermon.speaker.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         sermon.series.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = sermon.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      sermon.speaker.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      sermon.series.toLowerCase().includes(searchTerm.toLowerCase())
     return matchesFilter && matchesSearch
   })
 
@@ -54,7 +56,7 @@ export default function SermonsPage() {
             >
               THE FALLS CHURCH
             </Link>
-            
+
             <div className="hidden lg:flex items-center space-x-8">
               <Link href="/about" className="font-medium text-gray-600 hover:text-gray-900 text-sm tracking-wide uppercase transition-colors">
                 About Us
@@ -78,39 +80,39 @@ export default function SermonsPage() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-gradient-to-br from-indigo-50 to-blue-50"
           initial="initial"
           animate="animate"
           variants={staggerContainer}
+          style={{
+            backgroundImage: "url('/assets/images/2.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         >
           <div className="max-w-6xl mx-auto px-6">
             <motion.div className="text-center mb-16" variants={fadeInUp}>
-              <motion.h1 
+              <motion.h1
                 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6"
                 variants={fadeInUp}
               >
                 Sermons & Media
               </motion.h1>
-              <motion.div 
-                className="w-24 h-0.5 bg-gray-300 mx-auto mb-8"
+              <motion.div
+                className="w-24 h-0.5 bg-gray-900 mx-auto mb-8"
                 variants={fadeInUp}
                 initial={{ width: 0 }}
                 animate={{ width: 96 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               />
-              <motion.p 
-                className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-                variants={fadeInUp}
-              >
-                Growing in our relationship with God through His Word
-              </motion.p>
             </motion.div>
           </div>
         </motion.section>
 
         {/* Search and Filter Section */}
-        <motion.section 
+        <motion.section
           className="py-8 bg-white border-b border-gray-200"
           initial="initial"
           animate="animate"
@@ -141,11 +143,10 @@ export default function SermonsPage() {
                   <motion.button
                     key={filter.id}
                     onClick={() => setActiveFilter(filter.id)}
-                    className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                      activeFilter === filter.id
-                        ? 'bg-gray-900 text-white'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
+                    className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${activeFilter === filter.id
+                      ? 'bg-gray-900 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -158,7 +159,7 @@ export default function SermonsPage() {
         </motion.section>
 
         {/* Sermons Grid */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-white"
           initial="initial"
           animate="animate"
@@ -166,7 +167,7 @@ export default function SermonsPage() {
         >
           <div className="max-w-6xl mx-auto px-6">
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={activeFilter + searchTerm}
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
                 variants={staggerContainer}
@@ -175,7 +176,7 @@ export default function SermonsPage() {
                 exit="exit"
               >
                 {filteredSermons.map((sermon, index) => (
-                  <motion.div 
+                  <motion.div
                     key={`${sermon.title}-${index}`}
                     className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
                     variants={fadeInUp}
@@ -184,35 +185,16 @@ export default function SermonsPage() {
                     layout
                   >
                     {/* Video/Audio Thumbnail */}
-                    <motion.div 
-                      className="aspect-video bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors duration-300 cursor-pointer relative overflow-hidden"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ type: "spring", stiffness: 400 }}
-                      >
-                        <Play className="text-white group-hover:scale-110 transition-transform duration-300" size={48} />
-                      </motion.div>
-                      
-                      {/* Type Badge */}
-                      <motion.div 
-                        className={`absolute top-4 right-4 px-2 py-1 rounded text-xs font-medium ${
-                          sermon.type === 'video' ? 'bg-red-500 text-white' :
-                          sermon.type === 'audio' ? 'bg-blue-500 text-white' :
-                          'bg-green-500 text-white'
-                        }`}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: index * 0.1 + 0.3 }}
-                      >
-                        {sermon.type.toUpperCase()}
-                      </motion.div>
-                    </motion.div>
+                    <video className="" id="bandVideo" controls poster={`/assets/images/${sermon.thumbnail}`} preload="none">
+                      <source src={`/assets/videos/${sermon.video}`} type="video/mp4" />
+                      <source src="videos/pull-up-clip.h264" type="video/h264" />
+                      <source src="videos/pull-up-clip.webm" type="video/webm" />
+                      Your browser does not support this video file format
+                    </video>
 
                     {/* Content */}
                     <div className="p-6">
-                      <motion.div 
+                      <motion.div
                         className="mb-2"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -222,16 +204,16 @@ export default function SermonsPage() {
                           {sermon.series}
                         </span>
                       </motion.div>
-                      
+
                       <h3 className="font-display text-xl font-semibold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors cursor-pointer">
                         {sermon.title}
                       </h3>
-                      
+
                       <div className="flex items-center text-gray-600 text-sm mb-3">
                         <User size={16} className="mr-2" />
                         {sermon.speaker}
                       </div>
-                      
+
                       <div className="flex items-center justify-between text-gray-500 text-sm mb-4">
                         <div className="flex items-center">
                           <Calendar size={14} className="mr-1" />
@@ -242,9 +224,9 @@ export default function SermonsPage() {
                           {sermon.duration}
                         </div>
                       </div>
-                      
+
                       <div className="flex space-x-2">
-                        <motion.button 
+                        <motion.button
                           className="flex-1 bg-gray-900 hover:bg-gray-700 text-white py-2 transition-colors duration-300 text-sm font-medium"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -252,7 +234,7 @@ export default function SermonsPage() {
                           {sermon.type === 'video' ? 'Watch' : sermon.type === 'audio' ? 'Listen' : 'Read'}
                         </motion.button>
                         {sermon.type !== 'transcript' && (
-                          <motion.button 
+                          <motion.button
                             className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 transition-colors duration-300 text-sm font-medium"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -268,7 +250,7 @@ export default function SermonsPage() {
             </AnimatePresence>
 
             {filteredSermons.length === 0 && (
-              <motion.div 
+              <motion.div
                 className="text-center py-16"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -292,7 +274,7 @@ export default function SermonsPage() {
         </motion.section>
 
         {/* Featured Series */}
-        <motion.section 
+        <motion.section
           className="py-20 bg-gray-50"
           initial="initial"
           whileInView="animate"
@@ -322,14 +304,14 @@ export default function SermonsPage() {
                   color: "from-green-500 to-green-700"
                 }
               ].map((series, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="bg-white rounded-lg shadow-lg overflow-hidden"
                   variants={fadeInUp}
                   whileHover={{ y: -5, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className={`h-32 bg-gradient-to-r ${series.color} flex items-center justify-center`}
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -341,7 +323,7 @@ export default function SermonsPage() {
                     <p className="text-gray-600 leading-relaxed mb-4">{series.description}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">{series.sermonCount}</span>
-                      <motion.button 
+                      <motion.button
                         className="bg-gray-900 text-white px-4 py-2 text-sm font-medium hover:bg-gray-700 transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

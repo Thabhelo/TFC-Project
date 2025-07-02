@@ -174,27 +174,35 @@ export default function ContactPage() {
           initial="initial"
           animate="animate"
           variants={staggerContainer}
+          style={{
+            backgroundImage: "url('/assets/images/4.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: 350
+          }}
         >
           <div className="max-w-6xl mx-auto px-6">
             <motion.div className="text-center mb-16" variants={fadeInUp}>
               <motion.h1 
                 className="font-display text-5xl md:text-6xl font-bold text-gray-900 mb-6"
                 variants={fadeInUp}
+                style={{ color: 'white'}}
               >
-                Get In Touch With Us
               </motion.h1>
-              <motion.div 
+              {/* <motion.div 
                 className="w-24 h-0.5 bg-gray-300 mx-auto mb-8"
                 variants={fadeInUp}
                 initial={{ width: 0 }}
                 animate={{ width: 96 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-              />
+              /> */}
               <motion.p 
                 className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
                 variants={fadeInUp}
+                style={{ color: 'white'}}
+
               >
-                We'd love to hear from you and welcome you to our community
               </motion.p>
             </motion.div>
           </div>
@@ -291,7 +299,6 @@ export default function ContactPage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    aria-live="assertive"
                   >
                     <AlertCircle size={20} className="text-red-500 mr-3 flex-shrink-0" />
                     <p className="text-red-700">{error}</p>
@@ -330,7 +337,7 @@ export default function ContactPage() {
                           placeholder="First Name" 
                           required
                           disabled={isLoading}
-                          className={getInputClassName(isLoading)}
+                          // className={getInputClassName(isLoading)}
                         />
                       </motion.div>
                       <motion.div
