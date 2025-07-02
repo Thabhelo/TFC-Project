@@ -1,26 +1,6 @@
 # The Falls Church Website
 
-A modern, responsive website for The Falls Church - a God-centered community in Victoria Falls, Zimbabwe where the Gospel transforms lives, families, and society.
-
-## About The Falls Church
-
-Founded in 2018-2019 by Wessie and Somien van der Westhuizen, The Falls Church began as a church plant in Victoria Falls, Zimbabwe. After initial reconnaissance trips and an information evening in January 2019, the church held its first public meeting in October 2020. The church ordained its first elders in May 2023 and released its first team of deacons in March 2025.
-
-**Location**: Victoria Falls Primary School Hall, Victoria Falls, Zimbabwe  
-**Contact**: +263 719073586 | office@thefallschurch.net  
-**Service Times**: 8:30am (Summer) / 9:00am (Winter)
-
-## Features
-
-- **Complete Church Website**: 6 full pages with authentic content and navigation
-- **Interactive Animations**: Framer Motion animations throughout with smooth transitions
-- **Image Carousels**: Auto-playing carousels with manual navigation for church events
-- **Responsive Design**: Mobile-first design that works perfectly on all devices
-- **Google Maps Integration**: Interactive map showing actual church location
-- **Contact Forms**: Functional contact forms with validation
-- **SEO Optimized**: Comprehensive metadata and Open Graph tags
-- **Accessibility**: WCAG compliant with proper focus management
-- **Modern Typography**: Playfair Display headings with Inter body text
+A modern, responsive website for The Falls Church.
 
 ## Tech Stack
 
